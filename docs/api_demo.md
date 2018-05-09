@@ -12,6 +12,19 @@ To use our APIs, you need to `POST` a `GraphQL` compatible request body to our A
 You can explore our APIs with GraphiQL here: [https://graphql-dev.shoppo.com/console](https://graphql-dev.shoppo.com/console)
 ![Imgur](https://i.imgur.com/Bm9hHDW.png)
 
+#### How to use Playground as a API reference
+With GraphiQL, we can see a `docs` menu in the top right(as shown below)
+![GraphiQLDocs](./imgs/graphiql_docs.png)
+
+In the menu, we can see our GraphQL Schema. Basically, `RootQuery` for supported query objects, and `RootMutation` for supported mutations. And of course, we can search a specific schema in the search box. For example, we search `Product` and see what is a `Product`.
+
+![GraphiQLProduct](./imgs/graphiql_product.png)
+
+As shown in the screenshot, all supported field are listed with name and type and we can know if the field is required. If we click on the field name, we can get a simple description of the field.
+
+### Service Definition
+`Sku` is what our customers really see in our app. It contains specifications of the stuff(ex. length, color). Basic info of the stuff are in `Product` objects. A product can have **many** skus.
+
 ### Demo Query Object(product feed):
 
 You can use this query object in either GraphiQL playground or with `curl`(shown below).
@@ -36,7 +49,7 @@ query AdminSkuFeed($query: String, $cacheKey: String, $categoryId: String, $shop
             searchView
             coverVideo {
               id
-            } 
+            }
           }
         }
       }
