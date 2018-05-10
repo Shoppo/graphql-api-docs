@@ -6,11 +6,11 @@ To use our APIs, you need to `POST` a `GraphQL` compatible request body to our A
 ### API Authencation(put in header)
 - Content-type: application/json
 - accesstoken: "your accesstoken"
-- clientid: "your clientid"
+- viewerid: "your viewerid"
 
 ### API Playground
 You can explore our APIs with GraphiQL here: [https://graphql-dev.shoppo.com/console](https://graphql-dev.shoppo.com/console)
-![Imgur](https://i.imgur.com/Bm9hHDW.png)
+![Imgur](https://i.imgur.com/zPnHrog.png)
 
 #### How to use Playground as a API reference
 With GraphiQL, we can see a `docs` menu in the top right(as shown below)
@@ -25,57 +25,24 @@ As shown in the screenshot, all supported field are listed with name and type an
 ### Service Definition
 `Sku` is what our customers really see in our app. It contains specifications of the stuff(ex. length, color). Basic info of the stuff are in `Product` objects. A product can have **many** skus.
 
-### Demo Query Object(product feed):
+### Demo Query Object(product search):
 
 You can use this query object in either GraphiQL playground or with `curl`(shown below).
 
 ```
-query AdminSkuFeed($query: String, $cacheKey: String, $categoryId: String, $shoppoProductCategoryId: ID, $sort: ProductFeedSort, $boostOverrides: [FloatKeyValueInput], $targetUserTypes: [ProductTargetUserType], $first: Int, $after: String) {
-  productFeed(query: $query, boostOverrides: $boostOverrides, targetUserTypes: $targetUserTypes, cacheKey: $cacheKey, categoryId: $categoryId, shoppoProductCategoryId: $shoppoProductCategoryId, sort: $sort) {
-    queryJson
-    explainJson
-    skus(first: $first, after: $after) {
+query Test {
+  productSearch {
+    skus(first:10) {
       length
       edges {
         node {
           id
-          merchant {
-            id
-            name
-          }
-          product {
-            id
-            name
-            searchView
-            coverVideo {
-              id
-            }
-          }
         }
       }
     }
   }
 }
-
-QUERY VARIABLES
-{
-  "mode": "feed",
-  "boostOverrides": [],
-  "first": 24,
-  "after": ""
-}
 ```
-
-- TYPE:
-	- ProductFeed
-- ARGUMENTS:
-  - query: String
-  - categoryId: String
-  - shoppoProductCategoryId: ID
-  - sort: ProductFeedSort
-  - targetUserTypes: [ProductTargetUserType]
-  - boostOverrides: [FloatKeyValueInput]
-  - cacheKey: String
 
 ### Play with curl
 
@@ -88,8 +55,8 @@ curl \
   -X POST \
   -H "Content-Type: application/json" \
   -H "accesstoken: your_access_token" \
-  -H "viewerid: your_client_id" \
-  --data '{"query":"query AdminSkuFeed($query: String, $cacheKey: String, $categoryId: String, $shoppoProductCategoryId: ID, $sort: ProductFeedSort, $boostOverrides: [FloatKeyValueInput], $targetUserTypes: [ProductTargetUserType], $first: Int, $after: String) {\n  productFeed(query: $query, boostOverrides: $boostOverrides, targetUserTypes: $targetUserTypes, cacheKey: $cacheKey, categoryId: $categoryId, shoppoProductCategoryId: $shoppoProductCategoryId, sort: $sort) {\n    queryJson\n    explainJson\n    skus(first: $first, after: $after) {\n      length\n      edges {\n        node {\n          id\n          merchant {\n            id\n            name\n          }\n          product {\n            id\n            name\n            searchView\n            coverVideo {\n              id\n            } \n          }\n        }\n      }\n    }\n  }\n}\n","variables":{"mode":"feed","boostOverrides":[],"first":24,"after":""},"operationName":"AdminSkuFeed"}' \
+  -H "viewerid: your_viewer_id" \
+  --data '{"query":"query AdminSkuFeed { \n  productSearch {\n    skus(first:10) {\n      length\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n}\n","variables":{"mode":"feed","boostOverrides":[],"first":24,"after":""},"operationName":"AdminSkuFeed"}' \
   https://graphql-dev.shoppo.com/api/graphql
 ```
 
