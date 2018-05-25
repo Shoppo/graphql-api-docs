@@ -39,7 +39,7 @@ updatedTimeBefore | Int | `unix timestamp`, filter products updated at before th
 Connection parameters, more details about collection pagination please visit http://graphql.org/learn/pagination/
 
 name | type | description
---- | --- | --- | --- 
+--- | --- | ---
 first | Int | limit size
 last | Int | limit size
 after | String | offset cursor
@@ -48,7 +48,7 @@ before | String | offset cursor
 Product list fields:
 
 field name | type | required | description
---- | --- | --- |
+--- | --- | --- | ---
 length | Int | True | total matches count
 edges | List | True | node list
 edges.node | `Product` | | product node, please see `Product` definition below
