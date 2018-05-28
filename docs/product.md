@@ -145,7 +145,7 @@ width | String | | default unit is `inch`
 Product maybe belongs to multiple categories, category fields:
 
 field name | type | required | description
---- | --- | --- |
+--- | --- | --- | ---
 categoryId | String | True | Shoppo own category ID string, e.g., `5010101`
 path | String | True | category path, e.g., `Beauty > Makeup & Beauty > Fragrance > Aromatherapy`
 
