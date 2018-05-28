@@ -58,7 +58,7 @@ Query a single `Product` with `relay_id`
 
 ```
 query product($id: ID!) {
-  product(id: $id) {
+  node(id: $id) {
     ... on Product {
       id
       name
@@ -84,8 +84,8 @@ query product($id: ID!) {
 `Product` fields:
 
 field name | type | required | description
- --- | --- | --- |
- id | ID | True | product `relay_id`
+--- | --- | --- | ---
+id | ID | True | product `relay_id`
 brand | String | True | brand name
 coverImage | `Image` | True | cover image object
 coverVideo | `Video` | | video object
@@ -124,7 +124,7 @@ query sku($id: ID!) {
 `Sku` fields:
 
 field name | type | required | description
- --- | --- | --- |
+--- | --- | --- | ---
 id | `ID` | True | `Sku` `relay_id`
 color | String | True | e.g., red / blue
 coverImage | `Image` | True | cover image for this Sku
