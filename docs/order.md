@@ -127,7 +127,7 @@ refunded_amount | Float | | if order item is refunded, the amount will be return
 shipping_refunded | Boolean | | if refunded, the refunded amount whether contains shipping fee or not
 sku | [Sku](./product.md#sku) | True | sku snapshot
 `sku.id` | ID | True | Sku snapshot relay id
-`sku.originalId` | ID | True | Sku relay id, if you want retrieve Sky, use `originalId` other than `id`
+`sku.originalId` | ID | True | Sku relay id, if you want retrieve Sku, use `originalId` other than `id`
 shipping_provider | String | | Courier name for shipping package
 status | [OrderItemStatus](#orderItemStatus) | True | order item status enum
 tracking_number | String | | tracking number for the package
@@ -148,7 +148,7 @@ Fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-recipientFirstName | String | True recipient first name
+recipientFirstName | String | True | recipient first name
 recipientLastName | String | True | recipient last name
 streetAddress1 | String | True | Address 1
 streetAddress2 | String | True | Address 2
