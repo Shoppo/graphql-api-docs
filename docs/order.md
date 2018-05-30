@@ -52,6 +52,7 @@ skuId | ID | True | Sku relay id
 quantity | Int | True | buy Sku quantity
 
 <a name="queryOrder" />
+
 ## Query Order
 
 Query order with relay id
@@ -88,6 +89,7 @@ time_created | Int | True | unix timestamp for order created at
 time_payment_processed | Int | | unix timestamp for order paid at
 
 <a name="queryOrderItem" />
+
 ## Query Order Item
 
 ```graphql
@@ -138,6 +140,7 @@ time_refunded | Int | | if refunded, unix timestamp for refund created at
 ## Refund Order Item After Paid (TODO)
 
 <a name="shippingAddress" />
+
 ## Shipping Address
 The address for packages shipped to customer
 
@@ -154,6 +157,7 @@ state | String | True | state name
 country | String | True | country name, e.g. `United States`
 
 <a name="orderStatus" />
+
 ### Order Status
 Order status enums
 
@@ -167,6 +171,7 @@ CLOSED | customer cancelled the order
 EXPIRED | order expired and could not pay for this order
 
 <a name="orderItemStatus" />
+
 ### OrderItem Status
 OrderItem status enums
 

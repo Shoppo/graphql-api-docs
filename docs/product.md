@@ -54,6 +54,7 @@ edges | List | True | node list
 edges.node | `Product` | | product node, please see `Product` definition below
 
 <a name="product" />
+
 ## Query Product
 Query a single `Product` with `relay_id`
 
@@ -102,6 +103,7 @@ targetUserType | `TargetUserType` | True | product is fit for
 whiteBackgroundImage | `Image` | True | white background image object
 
 <a name="sku" />
+
 ## Query Sku
 Query a singe `Sku` with `relay_id`
 
