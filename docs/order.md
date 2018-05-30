@@ -10,7 +10,7 @@ Create Order Mutation:
 ```graphql
 mutation createOrder(
   $shippingAddress: ShippingAddressInput!,
-  orderItems: [OrderItemInput!]!,
+  $orderItems: [OrderItemInput!]!,
 ) {
   createOrder(
     shippingAddress: $shippingAddress,
@@ -34,7 +34,7 @@ mutation createOrder(
 }
 ```
 
-Response order structure details please see [Query Order](#queryOrder)
+Response order structure details, please see [Query Order](#queryOrder)
 
 Fields:
 
@@ -43,16 +43,16 @@ Name | Type | Required | Description
 shippingAddress | [ShippingAddressInput](#shippingAddress) | True | address object
 orderItems | [[OrderItemInput](#orderItemInput)!]! | True | order items contains Sku ID and quantity
 
-OrderItemInput Fields:
 <a name="orderItemInput" />
+OrderItemInput Fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 skuId | ID | True | Sku relay id
 quantity | Int | True | buy Sku quantity
 
-## Query Order
 <a name="queryOrder" />
+## Query Order
 
 Query order with relay id
 
@@ -87,8 +87,8 @@ status | [OrderStatus](#orderStatus) | True | order enums status
 time_created | Int | True | unix timestamp for order created at
 time_payment_processed | Int | | unix timestamp for order paid at
 
-## Query Order Item
 <a name="queryOrderItem" />
+## Query Order Item
 
 ```graphql
 query orderItem($id: ID!) {
@@ -137,8 +137,8 @@ time_refunded | Int | | if refunded, unix timestamp for refund created at
 
 ## Refund Order Item After Paid (TODO)
 
+<a name="shippingAddress" />
 ## Shipping Address
-<a name="shippingAddress"></a>
 The address for packages shipped to customer
 
 Fields:
@@ -153,8 +153,8 @@ city | String | True | city name
 state | String | True | state name
 country | String | True | country name, e.g. `United States`
 
-### Order Status
 <a name="orderStatus" />
+### Order Status
 Order status enums
 
 Value | Description
@@ -166,8 +166,8 @@ DELIVERED | packages are sent to couriers
 CLOSED | customer cancelled the order
 EXPIRED | order expired and could not pay for this order
 
-### OrderItem Status
 <a name="orderItemStatus" />
+### OrderItem Status
 OrderItem status enums
 
 Value | Description

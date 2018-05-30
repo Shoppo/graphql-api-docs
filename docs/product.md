@@ -53,8 +53,8 @@ length | Int | True | total matches count
 edges | List | True | node list
 edges.node | `Product` | | product node, please see `Product` definition below
 
-## Query Product
 <a name="product" />
+## Query Product
 Query a single `Product` with `relay_id`
 
 ```
@@ -101,8 +101,8 @@ skus | `[Sku]` | True | Sku list
 targetUserType | `TargetUserType` | True | product is fit for
 whiteBackgroundImage | `Image` | True | white background image object
 
-## Query Sku
 <a name="sku" />
+## Query Sku
 Query a singe `Sku` with `relay_id`
 
 ```
