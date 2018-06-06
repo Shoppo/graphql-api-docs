@@ -1,3 +1,7 @@
+## Shoppo Order Workflow
+
+![GraphiQLProduct](./imgs/order-flow.png)
+
 ## Create Order
 
 Create order with Sku items and shipping address.
