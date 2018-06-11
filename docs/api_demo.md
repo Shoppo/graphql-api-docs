@@ -2,15 +2,15 @@
 
 ### API Endpoint
 
-* development URL: https://graphql-dev.shoppo.com/api/graphql/partner
-* production URL: https://graphql.shoppo.com/api/graphql/partner
+* development URL: [https://graphql-dev.shoppo.com/api/graphql/partner](https://graphql-dev.shoppo.com/api/graphql/partner)
+* production URL: [https://graphql.shoppo.com/api/graphql/partner](https://graphql.shoppo.com/api/graphql/partner)
 
 To use our APIs, you need to `POST` a `GraphQL` compatible request body to our API endpoint. And you will get a `JSON` response.
 
 ### API Authencation(put in header)
-- Content-type: application/json
-- accesstoken: "your accesstoken"
-- viewerid: "your viewerid"
+- `Content-type`: application/json
+- `accesstoken`: "your accesstoken"
+- `viewerid`: "your viewerid"
 
 ### API Playground
 You can explore our APIs with GraphiQL here:
