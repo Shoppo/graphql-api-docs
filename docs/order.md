@@ -40,7 +40,7 @@ mutation createOrder(
 
 Response order structure details, please see [Query Order](#queryOrder)
 
-Fields:
+Variables:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -137,9 +137,57 @@ status | [OrderItemStatus](#orderItemStatus) | True | order item status enum
 tracking_number | String | | tracking number for the package
 time_refunded | Int | | if refunded, unix timestamp for refund created at
 
-## Set Order as Paid (TODO)
+<a name="setOrderAsPaid" />
 
-## Cancel Order Before Paid (TODO)
+## Set Order as Paid
+
+Before set order as paid, please check the order status and it should be `OPEN`.
+When set order as paid successfully, the status will be `PAID`.
+
+```graphql
+mutation setOrderAsPaid($orderId: ID!) {
+  setOrderAsPaid(orderId: $orderId) {
+    order {
+      id
+      status
+      timePaymentProcessed
+      orderItems {
+        id
+        status
+      }
+    }
+  }
+}
+```
+
+Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+orderId | ID | True | order relay id to set paid
+
+<a name="cancelOrderItem" />
+
+## Cancel OrderItem
+
+If order is not paid, you don't need cancel order. When order item status is `PAID`, you could cancel order item directly.
+
+```graphql
+mutation cancelOrderItem($orderItemId: ID!) {
+  cancelOrderItem(orderItemId: $orderItemId) {
+    orderItem {
+      id
+      status
+    }
+  }
+}
+```
+
+Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+orderItemId | ID | True | order item relay id to cancel
 
 ## Refund Order Item After Paid (TODO)
 
