@@ -36,7 +36,7 @@ As shown in the screenshot, all supported field are listed with name and type an
 
 You can use this query object in either GraphiQL playground or with `curl`(shown below).
 
-```
+```graphql
 query Test {
   productSearch {
     skus(first:10) {
@@ -57,14 +57,14 @@ To play with `curl`, we need a valid `GraphQL` request body. The format is: `{"q
 
 An example using Product Feed Query Object(listed beyond) is like this:
 
-```
+```bash
 curl \
   -X POST \
   -H "Content-Type: application/json" \
   -H "accesstoken: your_access_token" \
   -H "viewerid: your_viewer_id" \
   --data '{"query":"query AdminSkuFeed { \n  productSearch {\n    skus(first:10) {\n      length\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n}\n","variables":{"mode":"feed","boostOverrides":[],"first":24,"after":""},"operationName":"AdminSkuFeed"}' \
-  https://graphql-dev.shoppo.com/api/graphql
+  https://graphql-dev.shoppo.com/api/graphql/partner
 ```
 
 ### Using Java:
