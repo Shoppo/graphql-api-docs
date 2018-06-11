@@ -207,6 +207,8 @@ streetAddress2 | String | True | Address 2
 city | String | True | city name
 state | String | True | state name
 country | String | True | country name, e.g. `United States`
+zipcode | String | True | zip code
+phoneNumber | String | True | recipient phone number
 
 <a name="orderStatus" />
 
