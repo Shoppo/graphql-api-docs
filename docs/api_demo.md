@@ -1,6 +1,10 @@
 # Shoppo API Demo
 
-### API Endpoint: https://graphql-dev.shoppo.com
+### API Endpoint
+
+* development URL: https://graphql-dev.shoppo.com/api/graphql/partner
+* production URL: https://graphql.shoppo.com/api/graphql/partner
+
 To use our APIs, you need to `POST` a `GraphQL` compatible request body to our API endpoint. And you will get a `JSON` response.
 
 ### API Authencation(put in header)
@@ -9,7 +13,10 @@ To use our APIs, you need to `POST` a `GraphQL` compatible request body to our A
 - viewerid: "your viewerid"
 
 ### API Playground
-You can explore our APIs with GraphiQL here: [https://graphql-dev.shoppo.com/console](https://graphql-dev.shoppo.com/console)
+You can explore our APIs with GraphiQL here:
+* development: [https://graphql-dev.shoppo.com/console/partner](https://graphql-dev.shoppo.com/console/partner)
+* production: [https://graphql.shoppo.com/console/partner](https://graphql.shoppo.com/console/partner)
+
 ![Imgur](https://i.imgur.com/zPnHrog.png)
 
 #### How to use Playground as a API reference
