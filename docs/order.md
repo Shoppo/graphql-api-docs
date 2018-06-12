@@ -1,3 +1,55 @@
+## Order List
+
+```graphql
+query orderList(
+    $first: Int,
+    $last: Int,
+    $after: String,
+    $before: String,
+    $filters: OrderFilterInput,
+) {
+  orderList(
+    first: $first,
+    last: $last,
+    after: $after,
+    before: $before,
+    filters: $filters,
+  ) {
+    length
+    edges {
+      node {
+        id
+        status
+      }
+    }
+  }
+}
+```
+
+Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+first | Int | | limit size
+last | Int | | limit size
+after | String | | offset cursor
+before | String | | offset cursor
+filters | [OrderFilterInput](#orderFilterInput) | | filter parameters
+
+`OrderFilterInput` fields:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+timeCreatedRange | [Int, Int] | | filter by created time range, time format is `unix timestamp`
+
+Response order list fields:
+
+field name | type | required | description
+--- | --- | --- | ---
+length | Int | True | total matches count
+edges | List | True | order node list
+edges.node | [Order](#orderNode) | | order node, please see [Order](#orderNode) definition below
+
 ## Shoppo Order Workflow
 
 ![GraphiQLProduct](./imgs/order-flow.png)
@@ -77,13 +129,15 @@ query order($id: ID!) {
 }
 ```
 
-Order fields:
+<a name="orderNode" />
+
+`Order` fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 discount_amount | Float | True | discount amount
 id | ID | True | order relay id
-order_items | [[OrderItem](#queryOrderItem)] | True | order item list
+order_items | [[OrderItem](#orderItemNode)] | True | order item list
 order_subtotal | Float | True | sum of products amount and shipping fee
 order_total | Float | True | customer paid amount
 shipping_address | [shippingAddress](#shippingAddress) | True | address object
@@ -116,20 +170,22 @@ query orderItem($id: ID!) {
 }
 ```
 
+<a name="orderItemNode" />
+
 Order item fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 id | ID | True | order item relay id
 is_refunded | Boolean | | the order item whether is refunded or not
-order | [Order](#queryOrder) | True | order item's order object
-product | [Product](./product.md#product) | True | product snapshot
+order | [Order](#orderNode) | True | order item's order object
+product | [Product](./product.md#productNode) | True | product snapshot
 `product.id` | ID | True | product snapshot relay id
 `product.originalId` | ID | True | product relay id, if you want retrieve product, use `originalId` other than `id`
 quantity | Int | True | number for buy this Sku
 refunded_amount | Float | | if order item is refunded, the amount will be return
 shipping_refunded | Boolean | | if refunded, the refunded amount whether contains shipping fee or not
-sku | [Sku](./product.md#sku) | True | sku snapshot
+sku | [Sku](./product.md#skuNode) | True | sku snapshot
 `sku.id` | ID | True | Sku snapshot relay id
 `sku.originalId` | ID | True | Sku relay id, if you want retrieve Sku, use `originalId` other than `id`
 shipping_provider | String | | Courier name for shipping package
