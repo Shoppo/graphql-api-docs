@@ -36,9 +36,9 @@ first | Int | | limit size
 last | Int | | limit size
 after | String | | offset cursor
 before | String | | offset cursor
-filters | [ProductFilterInput](./#productFilterInput) | | filters
+filters | [ProductFilterInput](#productFilterInput) | | filters
 
-Connection parameters, more details about collection pagination please visit http://graphql.org/learn/pagination/
+Connection parameters, more details about collection pagination please visit [http://graphql.org/learn/pagination/](http://graphql.org/learn/pagination/)
 
 <a name="productFilterInput" />
 
@@ -54,7 +54,7 @@ field name | type | required | description
 --- | --- | --- | ---
 length | Int | True | total matches count
 edges | List | True | node list
-edges.node | [Product](./#productNode) | | product node, please see `Product` definition below
+edges.node | [Product](#productNode) | | product node, please see [Product](#productNode) definition below
 
 <a name="product" />
 
@@ -96,16 +96,16 @@ id | ID | True | product `relay_id`
 brand | String | True | brand name
 coverImage | [Image](./image_and_video.md#image) | True | cover image object
 coverVideo | [Video](./image_and_video.md#video) | | video object
-consumerCategories | `[ConsumerCategory]` | True | product categories
+consumerCategories | [[ConsumerCategory](#consumerCategory)] | True | product categories
 description | String | True | product description
 enabled | Boolean | True | whether this product could be sell
 extraImages | [[Image]](./image_and_video.md#image) | | product images list object
 features | `[String]` | | product features, there are at most `5` features
 name | String | True | product name
 inventory | Int | True | total count could to sell
-skus | [Sku]('./#skuNode') | True | Sku list
-targetUserType | [TargetUserType](./#targetUserType) | True | product is fit for
-whiteBackgroundImage | `Image` | True | white background image object
+skus | [Sku](#skuNode) | True | Sku list
+targetUserType | [TargetUserType](#targetUserType) | True | product is fit for
+whiteBackgroundImage | [Image](./image_and_video.md#image) | True | white background image object
 
 <a name="sku" />
 
@@ -143,7 +143,7 @@ height | String | | default unit is `inch`
 inventory | Int | True | total count could be sell
 length | String | | default unit is `inch`
 price | Float | True | currency unit is `USD`
-product | [Product](./#productNode) | True | retrieve Sku's product
+product | [Product](#productNode) | True | retrieve Sku's product
 shippingPrice | Float | True | Shipping price for this Sku, product all skus' shipping price are same
 shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all skus' shipping time are same
 size | String | | default unit is `inch`
