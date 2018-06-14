@@ -142,6 +142,7 @@ enabled | Boolean | True | this Sku whether could be sell
 height | String | | default unit is `inch`
 inventory | Int | True | total count could be sell
 length | String | | default unit is `inch`
+msrp | Float | | MSRP
 price | Float | True | currency unit is `USD`
 product | [Product](#productNode) | True | retrieve Sku's product
 shippingPrice | Float | True | Shipping price for this Sku, product all skus' shipping price are same
@@ -149,6 +150,35 @@ shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all
 size | String | | default unit is `inch`
 weight | String | | default unit is `Pound`
 width | String | | default unit is `inch`
+
+<a name="productCategories" />
+
+## Product Category List
+
+Query for product category list
+
+```graphql
+query productCategories(
+  $first: Int,
+  $after: String,
+  ){
+  productCategories(
+    first: $first,
+    after: $after,
+  ) {
+    length
+    edges {
+      node {
+        id
+        categoryId
+        path
+      }
+    }
+  }
+}
+```
+
+Response `node` type is [ConsumerProductCategory](#consumerCategory)
 
 <a name="consumerCategory" />
 
@@ -158,6 +188,7 @@ Product maybe belongs to multiple categories, category fields:
 
 field name | type | required | description
 --- | --- | --- | ---
+id | ID | True | relay id
 categoryId | String | True | Shoppo own category ID string, e.g., `5010101`
 path | String | True | category path, e.g., `Beauty > Makeup & Beauty > Fragrance > Aromatherapy`
 
