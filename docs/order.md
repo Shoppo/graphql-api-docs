@@ -72,20 +72,22 @@ mutation createOrder(
     shippingAddress: $shippingAddress,
     orderItems: $orderItems,
     ){
-    id
-    status
-    orderItems {
-      id
-      sku {
-        originalId
-        price
+      order {
+        id
+        status
+        orderItems {
+          id
+          sku {
+            originalId
+            price
+          }
+          product {
+            originalId
+            name
+          }
+          quantity
+        }
       }
-      product {
-        originalId
-        name
-      }
-      quantity
-    }
   }
 }
 ```
