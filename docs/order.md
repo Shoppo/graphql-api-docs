@@ -247,7 +247,41 @@ Name | Type | Required | Description
 --- | --- | --- | ---
 orderItemId | ID | True | order item relay id to cancel
 
-## Refund Order Item After Paid (TODO)
+<a name="refundOrderItem" />
+
+## Refund OrderItem
+
+Refund an order item
+
+```graphql
+mutation refundOrderItem(
+  $orderItemId: ID!,
+  $refundShipping: Boolean!,
+  $refundReasonType: RefundReasonType!,
+) {
+  refundOrderItem(
+    orderItemId: $orderItemId,
+    refundShipping: $refundShipping,
+    refundReasonType: $refundReasonType,
+  ) {
+    orderItem {
+      id
+      isRefunded
+      shippingRefunded
+      status
+      timeRefunded
+    }
+  }
+}
+```
+
+Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+orderItemId | ID | True | order item relay id to refund
+refundShipping | Boolean | True | whether refund shipping fee
+refundReasonType | [RefundReasonType](#refundReasonType) | True | Reason for refund
 
 <a name="shippingAddress" />
 
@@ -297,3 +331,18 @@ DELIVERED | customer confirmed he received the package
 CANCELLED | order item is cancelled
 
 ## Shipping Package (TODO)
+
+<a name="refundReasonType" />
+
+## Refund Reason Type
+
+Reason for refund order item
+
+Value | Description
+--- | ---
+CUSTOMER_CANCELED | CUSTOMER_CANCELED
+OUT_OF_STOCK | Sku OUT_OF_STOCK
+BAD_SHIPPING_ADDRESS | BAD_SHIPPING_ADDRESS
+AGREEMENT_WITH_USER | AGREEMENT_WITH_USER
+FRAUDULENT_PURCHASE | FRAUDULENT_PURCHASE
+NOT_SHIPPED_TOO_LONG | NOT_SHIPPED_TOO_LONG
