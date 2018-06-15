@@ -185,15 +185,16 @@ product | [Product](./product.md#productNode) | True | product snapshot
 `product.id` | ID | True | product snapshot relay id
 `product.originalId` | ID | True | product relay id, if you want retrieve product, use `originalId` other than `id`
 quantity | Int | True | number for buy this Sku
-refunded_amount | Float | | if order item is refunded, the amount will be return
-shipping_refunded | Boolean | | if refunded, the refunded amount whether contains shipping fee or not
+refundedAmount | Float | | if order item is refunded, the amount will be return
+shippingRefunded | Boolean | | if refunded, the refunded amount whether contains shipping fee or not
 sku | [Sku](./product.md#skuNode) | True | sku snapshot
 `sku.id` | ID | True | Sku snapshot relay id
 `sku.originalId` | ID | True | Sku relay id, if you want retrieve Sku, use `originalId` other than `id`
-shipping_provider | String | | Courier name for shipping package
+shippingPackage | [ShippingPackage](#shippingPackage) | | order item's shipping package
+shippingProvider | String | | Courier name for shipping package
 status | [OrderItemStatus](#orderItemStatus) | True | order item status enum
-tracking_number | String | | tracking number for the package
-time_refunded | Int | | if refunded, unix timestamp for refund created at
+trackingNumber | String | | tracking number for the package
+timeRefunded | Int | | if refunded, unix timestamp for refund created at
 
 <a name="setOrderAsPaid" />
 
@@ -330,7 +331,35 @@ SHIPPED | the package is on the way to deliver to customer
 DELIVERED | customer confirmed he received the package
 CANCELLED | order item is cancelled
 
-## Shipping Package (TODO)
+<a name="shippingPackage" />
+
+## Shipping Package
+
+Fields:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+id | ID | True | relay id
+checkpoints | [[Checkpoint](#checkpoint)] | | tracking info
+courier | String | True | shipping provider name
+isDelivered | Boolean | True | whether package is delivered
+status | String | True | packpage current status
+timeDelivered | Int | | delivered at, `unix timestamp`
+timeLanded  | Int | | landed at, `unix timestamp`
+timeShipped | Int | | shipped at, `unix timestamp`
+timeTracked | Int | | tracked at, `unix timestamp`
+trackingNumber | String | True | tracking number
+
+<a name="checkpoint" />
+
+`Checkpoint` fields:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+courier | String | | courier name
+time | Int | | checkpoint happened at, `unix timestamp`
+message | String | | event description
+location | String | | location
 
 <a name="refundReasonType" />
 
