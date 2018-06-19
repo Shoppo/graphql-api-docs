@@ -118,15 +118,17 @@ Query order with relay id
 ```graphql
 query order($id: ID!) {
   node(id: $id) {
-    id
-    orderItems {
+    ... on order {
       id
-      sku {
-        originalId
+      orderItems {
+        id
+        sku {
+          originalId
+        }
+        status
       }
       status
     }
-    status
   }
 }
 ```
@@ -155,19 +157,21 @@ time_payment_processed | Int | | unix timestamp for order paid at
 ```graphql
 query orderItem($id: ID!) {
   node(id: $id) {
-    id
-    sku {
+    ... on orderItem {
       id
-      originalId
-      price
-      shippingPrice
+      sku {
+        id
+        originalId
+        price
+        shippingPrice
+      }
+      product {
+        id
+        originalId
+        name
+      }
+      status
     }
-    product {
-      id
-      originalId
-      name
-    }
-    status
   }
 }
 ```
