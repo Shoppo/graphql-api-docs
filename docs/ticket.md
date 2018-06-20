@@ -5,7 +5,7 @@
 * [Ticket List](#ticket-list)
 * [Create Ticket](#create-ticket)
 * [Query Ticket](#query-ticket)
-* [Webhook(Reply Ticket Callback)](#webhook-reply-ticket-callback)
+* [Webhook(Reply Ticket Callback)](#webhookreply-ticket-callback)
 * [Reply Ticket](#reply-ticket)
 
 
@@ -186,7 +186,7 @@ content | String | True | ticket reply content
 POST /reply HTTP/1.1
 Host: localhost
 Content-Type: application/json
-Content-Length: 6615
+Content-Length: 1000
 {
   "id": "KJh51ba6sd23",
   "content": "This is a reply to ticket."
@@ -232,7 +232,7 @@ mutation replyTicket(
 }
 ```
 
-Response ticket structure details, please see [Query Ticket](#queryTicket)
+Response ticket structure details, please see [Query Ticket](#query-ticket)
 <a name="reply-node" />
 Variables:
 
