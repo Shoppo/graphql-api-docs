@@ -208,8 +208,8 @@ Before set order as paid, please check the order status and it should be `OPEN`.
 When set order as paid successfully, the status will be `PAID`.
 
 ```graphql
-mutation setOrderAsPaid($orderId: ID!) {
-  setOrderAsPaid(orderId: $orderId) {
+mutation setOrderAsPaid($orderId: ID!, $chargeId: String!) {
+  setOrderAsPaid(orderId: $orderId, chargeId: $chargeId) {
     order {
       id
       status
@@ -228,6 +228,7 @@ Variables:
 Name | Type | Required | Description
 --- | --- | --- | ---
 orderId | ID | True | order relay id to set paid
+chargeId | String | True | Partner charge id for the order and should be unique
 
 <a name="cancelOrderItem" />
 
