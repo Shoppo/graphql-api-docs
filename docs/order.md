@@ -253,42 +253,6 @@ Name | Type | Required | Description
 --- | --- | --- | ---
 orderItemId | ID | True | order item relay id to cancel
 
-<a name="refundOrderItem" />
-
-## Refund OrderItem
-
-Refund an order item
-
-```graphql
-mutation refundOrderItem(
-  $orderItemId: ID!,
-  $refundShipping: Boolean!,
-  $refundReasonType: RefundReasonType!,
-) {
-  refundOrderItem(
-    orderItemId: $orderItemId,
-    refundShipping: $refundShipping,
-    refundReasonType: $refundReasonType,
-  ) {
-    orderItem {
-      id
-      isRefunded
-      shippingRefunded
-      status
-      timeRefunded
-    }
-  }
-}
-```
-
-Variables:
-
-Name | Type | Required | Description
---- | --- | --- | ---
-orderItemId | ID | True | order item relay id to refund
-refundShipping | Boolean | True | whether refund shipping fee
-refundReasonType | [RefundReasonType](#refundReasonType) | True | Reason for refund
-
 <a name="shippingAddress" />
 
 ## Shipping Address
