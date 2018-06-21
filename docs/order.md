@@ -234,7 +234,7 @@ chargeId | String | True | Partner charge id for the order and should be unique
 
 ## Cancel OrderItem
 
-If order is not paid, you don't need cancel order. When order item status is `PAID`, you could cancel order item directly.
+If order is not paid, you don't need cancel order. Only when order item status is `PAID`, you could cancel order item directly, otherwise you need create customer service ticket.
 
 ```graphql
 mutation cancelOrderItem($orderItemId: ID!) {
