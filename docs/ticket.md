@@ -177,7 +177,7 @@ Post Variables:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-id | ID | True | ticket reply id
+replyId | ID | True | ticket reply id
 content | String | True | ticket reply content
 
 ### Example delivery
