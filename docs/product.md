@@ -136,6 +136,7 @@ query sku($id: ID!) {
 field name | type | required | description
 --- | --- | --- | ---
 id | `ID` | True | `Sku` `relay_id`
+availableCountriesShippingConfig | [CustomerShippingConfig](#customerShippingConfig) | | this Sku whether could be sell to other countries (except `Unite States`), if could, specialized shipping price and shipping time for countries.
 color | String | True | e.g., red / blue
 coverImage | [Image](./image_and_video.md#image) | True | cover image for this Sku
 enabled | Boolean | True | this Sku whether could be sell
@@ -202,3 +203,23 @@ ALL | for all
 MEN | male only
 WOMEN | female only
 UNKNOWN | not sure
+
+<a name="customerShippingConfig" />
+
+## Customer Shipping Config
+
+field name | type | required | description
+--- | --- | --- | ---
+countryCode | [CountryCode](#countryCode) | True | country code enum
+shippingPrice | `Float` | True | special shipping price for this country
+shippingTime | `String` | True | special shipping time for this country
+
+<a name="countryCode" />
+
+## Country Code
+
+value | country
+--- | ---
+US | United States
+CN | China
+IN | India
