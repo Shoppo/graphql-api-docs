@@ -136,7 +136,6 @@ query sku($id: ID!) {
 field name | type | required | description
 --- | --- | --- | ---
 id | `ID` | True | `Sku` `relay_id`
-availableCountriesShippingConfig | [CustomerShippingConfig](#customerShippingConfig) | | this Sku whether could be sell to other countries (except `Unite States`), if could, specialized shipping price and shipping time for countries.
 color | String | True | e.g., red / blue
 coverImage | [Image](./image_and_video.md#image) | True | cover image for this Sku
 enabled | Boolean | True | this Sku whether could be sell
@@ -146,6 +145,7 @@ length | String | | default unit is `inch`
 msrp | Float | | MSRP
 price | Float | True | currency unit is `USD`
 product | [Product](#productNode) | True | retrieve Sku's product
+shippingConfig | [CustomerShippingConfig](#customerShippingConfig) | True | specialized shipping price and shipping time for multiple countries
 shippingPrice | Float | True | Shipping price for this Sku, product all skus' shipping price are same
 shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all skus' shipping time are same
 size | String | | default unit is `inch`
