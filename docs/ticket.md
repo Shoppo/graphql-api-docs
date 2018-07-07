@@ -16,27 +16,26 @@
 ## Ticket List
 
 ```graphql
-query ticketList(
+query exchangeItemTicketList(
     $first: Int,
     $last: Int,
     $after: String,
     $before: String,
     $filters: TicketFilterInput,
 ) {
-  ticketList(
+  exchangeItemTicketList(
     first: $first,
     last: $last,
     after: $after,
     before: $before,
     filters: $filters,
   ) {
-    id
     edges {
       node {
         id
-        status
       }
     }
+    length
   }
 }
 ```
@@ -52,6 +51,7 @@ before | String | | offset cursor
 filters | [TicketFilterInput](#ticket-filter-input) | | filter parameters
 
 <a name="ticket-filter-input" />
+
 `TicketFilterInput` fields:
 
 Name | Type | Required | Description
@@ -66,50 +66,46 @@ length | Int | True | total matches count
 edges | List | True | ticket node list
 edges.node | [Ticket](#ticket-node) | | ticket node, please see [Ticket](#ticket-node) definition below
 
+The same is true for `refundTicketList` and `orderQuestionTicketList`.
 
 ## Create Ticket
 
-Create ticket with title, author, order_id and content.
+Creating an exchange item ticket with firstName, lastName, email, reason, orderItems, imageIds and remark.
 
-* When created, the ticket status is `NEW`.
+* When created, the ticket zendeskStatus is `NEW`.
 * When customer service replied to the ticket, we will call [Webhook](#webhook-reply-ticket-callback) to reply your ticket.
 * There are 6 kinds of ticket status, see status details [here](#ticket-status).
 
 Create Ticket Mutation:
 
 ```graphql
-mutation createTicket(
-  $title: String!,
+mutation CreateExchangeItemTicket(
   $firstName: String!,
   $lastName: String!,
   $email: String!,
-  $orderId: String!,
-  $content: String!
+  $reason: ExchangeItemReason!,
+  $orderItemIds: [ID]!,
+  $imageIds: [ID]!,
+  $remark: String,
 ) {
-  createTicket(
-    title: $title,
+	createExchangeItemTicket(
     firstName: $firstName,
     lastName: $lastName,
     email: $email,
-    orderId: $orderId,
-    content: $content
-    ){
-      ticket {
-        id
-        status
-        title
-        author
-        orderId
-        content
-        replies {
-          edges {
-            node
-          }
-          length
-        }
-      }
-    }
+    reason: $reason,
+    orderItemIds: $orderItemIds,
+    imageIds: $imageIds,
+    remark: $remark,
+  ){
+    ticket{
+      reason
+      id
+      firstName
+      lastName
+      email
+   }
   }
+}
 ```
 
 Response ticket structure details, please see [Query Ticket](#query-ticket).
@@ -118,12 +114,20 @@ Variables:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-title| String | True | ticket title
+reason | String | True | reason for ticket
+id | ID | String | True | return id for reply ticket
 firstName | String | True | ticket author's firstname
 lastName | String | True | ticket author's lastname
 email | String | True | ticket author's email
-orderId | String | True | order id
-content | String | True | ticket content
+
+Similar to creating an exchange item ticket, creating a refund ticket requires firstName, lastName, email, reason, problemType, itemDeliveryStatus and imageIds.Creating a order question ticket requires firstName, lastName, email, itemDeliveryStatus and imageIds.
+
+Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+problemType | Enum | True | REFUND, EXCHANGE, NOT_ARRIVED, OTHER
+itemDeliveryStatus | Enum | True | RECEIVED, NOT_RECEIVED
 
 
 ## Query Ticket
@@ -131,21 +135,24 @@ content | String | True | ticket content
 Query ticket with reply id.
 
 ```graphql
-query ticket($id: ID!) {
-  node(id: $id) {
+query exchangeItemTicket($originalId: ID!) {
+  exchangeItemTicket(originalId: $originalId) {
     id
-    status
-    title
+    reason
+    originalId
     firstName
     lastName
     email
-    orderId
-    content
-    replies {
-      edges {
-        node
-      }
+    status
+    zendeskStatus
+    remark
+    comments{
       length
+      edges {
+        node {
+          content
+        }
+      }
     }
   }
 }
@@ -157,17 +164,25 @@ query ticket($id: ID!) {
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-id | ID | True | ticket reply id
-status | [TicketStatus](#ticket-status) | True | ticket enums status
+id | ID | True | id
+originalId | ID | True | ticket reply id
+status | Enum | True | OPEN, CLOSED
+zendeskStatus | [TicketStatus](#ticket-status) | True | ticket enums status
 firstName | String | True | ticket author's firstname
 lastName | String | True | ticket author's lastname
 email | String | True | ticket author's email
-orderId | String | True | order id
-content | String | True | ticket content
-replies.edges | List | | ticket reply node list
-replies.edges.node | [Reply](#reply-node) | | ticket reply node, please see [Reply](#reply-node) definition below
-replies.length | Int | True | total replies matches count
+remark | String | True | remark
+comments.edges | List | | ticket comment node list
+comments.edges.node | [Comment](#comment-node) | | ticket comment node, please see [Comment](#comment-node) definition below
+comments.length | Int | True | total comments matches count
 
+<a name="comment-node" />
+
+Comment Variables:
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+content | String | True | ticket reply content
 
 ## Webhook(Reply Ticket Callback)
 
@@ -206,41 +221,24 @@ If the reply is successful, we would like to reply 200, and the reply is as foll
 The user can reply to the return ticket with the reply id.
 
 ```graphql
-mutation replyTicket(
-  $replyId: $replyId,
-  $content: String!
+mutation ReplyCustomerServiceTicket(
+	$originalId: ID!,
+	$replyContent: String!
 ) {
-  replyTicket(
-    replyId: $replyId,
-    content: $content
-    ){
-      ticket {
-        id
-        status
-        title
-        orderId
-        content
-        replies {
-          edges {
-            node
-          }
-          length
-        }
-      }
-    }
+  replyCustomerServiceTicket(
+  	originalId: $originalId,
+  	replyContent: $replyContent
+  ) {
+    success
   }
 }
 ```
 
-Response ticket structure details, please see [Query Ticket](#query-ticket)
-<a name="reply-node" />
-Variables:
+Response Variables:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-replyId | ID | True | ticket reply id
-content | String | True | ticket reply content
-
+success | Boolean | True | 
 
 ### Ticket Status
 
