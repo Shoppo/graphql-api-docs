@@ -203,7 +203,7 @@ Host: localhost
 Content-Type: application/json
 Content-Length: 1000
 {
-  "id": "KJh51ba6sd23",
+  "relayId": "KJh51ba6sd23",
   "content": "This is a reply to ticket."
 }
 ```
