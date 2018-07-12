@@ -88,7 +88,7 @@ mutation CreateExchangeItemTicket(
   $imageIds: [ID]!,
   $remark: String,
 ) {
-	createExchangeItemTicket(
+  createExchangeItemTicket(
     firstName: $firstName,
     lastName: $lastName,
     email: $email,
@@ -203,7 +203,7 @@ Host: localhost
 Content-Type: application/json
 Content-Length: 1000
 {
-  "relayId": "KJh51ba6sd23",
+  "replyId": "KJh51ba6sd23",
   "content": "This is a reply to ticket."
 }
 ```
