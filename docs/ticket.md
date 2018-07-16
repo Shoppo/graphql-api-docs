@@ -115,7 +115,7 @@ Variables:
 Name | Type | Required | Description
 --- | --- | --- | ---
 reason | String | True | reason for ticket
-id | ID | String | True | return id for reply ticket
+id | ID | String | True | return id when create ticket
 firstName | String | True | ticket author's firstname
 lastName | String | True | ticket author's lastname
 email | String | True | ticket author's email
@@ -135,11 +135,11 @@ itemDeliveryStatus | Enum | True | RECEIVED, NOT_RECEIVED
 Query ticket with reply id.
 
 ```graphql
-query exchangeItemTicket($originalId: ID!) {
-  exchangeItemTicket(originalId: $originalId) {
+query exchangeItemTicket($ticketId: ID!) {
+  exchangeItemTicket(ticketId: $ticketId) {
     id
     reason
-    originalId
+    ticketId
     firstName
     lastName
     email
@@ -165,7 +165,7 @@ query exchangeItemTicket($originalId: ID!) {
 Name | Type | Required | Description
 --- | --- | --- | ---
 id | ID | True | id
-originalId | ID | True | ticket reply id
+ticketId | ID | True | return id when create ticket
 status | Enum | True | OPEN, CLOSED
 zendeskStatus | [TicketStatus](#ticket-status) | True | ticket enums status
 firstName | String | True | ticket author's firstname
@@ -192,7 +192,7 @@ Post Variables:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-replyId | ID | True | ticket reply id
+ticketId | ID | True | return id when create ticket
 content | String | True | ticket reply content
 
 ### Example delivery
@@ -203,7 +203,7 @@ Host: localhost
 Content-Type: application/json
 Content-Length: 1000
 {
-  "replyId": "KJh51ba6sd23",
+  "ticketId": "KJh51ba6sd23",
   "content": "This is a reply to ticket."
 }
 ```
@@ -222,11 +222,11 @@ The user can reply to the return ticket with the reply id.
 
 ```graphql
 mutation ReplyCustomerServiceTicket(
-	$originalId: ID!,
+	$ticketId: ID!,
 	$replyContent: String!
 ) {
   replyCustomerServiceTicket(
-  	originalId: $originalId,
+  	ticketId: $ticketId,
   	replyContent: $replyContent
   ) {
     success
