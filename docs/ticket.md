@@ -108,6 +108,7 @@ mutation CreateExchangeItemTicket(
 }
 ```
 
+You can get the orderItemId through the [Create Order](/order.md#create-order) method and get the imageId through the [Upload Image](./image_and_video.md#upload_image) method.
 Response ticket structure details, please see [Query Ticket](#query-ticket).
 
 Variables:
