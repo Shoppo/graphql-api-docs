@@ -147,6 +147,7 @@ order_total | Float | True | customer paid amount
 shipping_address | [shippingAddress](#shippingAddress) | True | address object
 shipping_cost | Float | True | total shipping fee amount
 status | [OrderStatus](#orderStatus) | True | order enums status
+refund_status | [OrderRefundStatus](#orderRefundStatus) | |  order enums refund status
 time_created | Int | True | unix timestamp for order created at
 time_payment_processed | Int | | unix timestamp for order paid at
 
@@ -285,6 +286,19 @@ IN_PROGRESS | packages are being prepared in warehouse
 DELIVERED | packages are sent to couriers
 CLOSED | customer cancelled the order
 EXPIRED | order expired and could not pay for this order
+
+
+<a name="orderRefundStatus" />
+
+### Order Refund Status
+Order refund status enums
+
+Value | Description
+--- | ---
+FULL_REFUNDED | all order items are refunded
+PARTIAL_REFUNDED | part of order items are refunded
+NOT_REFUNDED | none of order items are refunded
+
 
 <a name="orderItemStatus" />
 
