@@ -28,8 +28,7 @@ With GraphiQL, you can see a **docs** menu in the top right(as shown below)
 
 In the menu, you can see our GraphQL Schema. Basically, **RootQuery** for supported query objects, and **RootMutation** for supported mutations. And of course, you can search a specific schema in the search box. For example, you search **Product** and see what is a **Product**.
 
-<img src="./images/graphiql_product.png" width="40%">
-
+![product](./images/graphiql_product.png)
 
 As shown in the screenshot, all supported field are listed with name and type and you can know if the field is required. If you click on the field name, you can get a simple description of the field.
 
@@ -41,3 +40,9 @@ These links may help:
 * [apollo-android](https://github.com/apollographql/apollo-android)
 * [graphql_java_gen](https://github.com/Shopify/graphql_java_gen)
 * [graphql-java](https://github.com/graphql-java/graphql-java)
+
+<style>
+img[alt=product] {
+    width: 50%
+}
+</style>
