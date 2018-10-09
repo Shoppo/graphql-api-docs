@@ -28,7 +28,8 @@ With GraphiQL, you can see a **docs** menu in the top right(as shown below)
 
 In the menu, you can see our GraphQL Schema. Basically, **RootQuery** for supported query objects, and **RootMutation** for supported mutations. And of course, you can search a specific schema in the search box. For example, you search **Product** and see what is a **Product**.
 
-![](./images/graphiql_product.png)
+<img src="./images/graphiql_product.png" width="40%">
+
 
 As shown in the screenshot, all supported field are listed with name and type and you can know if the field is required. If you click on the field name, you can get a simple description of the field.
 
