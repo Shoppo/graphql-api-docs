@@ -1,17 +1,9 @@
 
-# Content
-
-* [Shoppo Ticket Workflow](#shoppo-ticket-workflow)
-* [Ticket List](#ticket-list)
-* [Create Ticket](#create-ticket)
-* [Query Ticket](#query-ticket)
-* [Webhook(Reply Ticket Callback)](#webhookreply-ticket-callback)
-* [Reply Ticket](#reply-ticket)
-
+# Ticket
 
 ## Shoppo Ticket Workflow
 
-![GraphiQLProduct](./imgs/ticket-flow.png)
+![](./images/ticket-flow.png)
 
 ## Ticket List
 
@@ -40,33 +32,33 @@ query exchangeItemTicketList(
 }
 ```
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-first | Int | | limit size
-last | Int | | limit size
-after | String | | offset cursor
-before | String | | offset cursor
-filters | [TicketFilterInput](#ticket-filter-input) | | filter parameters
+first | Int | False | limit size
+last | Int | False | limit size
+after | String | False | offset cursor
+before | String | False | offset cursor
+filters | [TicketFilterInput](#ticket-filter-input) | False | filter parameters
 
-<a name="ticket-filter-input" />
+<span id="ticket-filter-input"></span>
 
-`TicketFilterInput` fields:
+### TicketFilterInput Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-timeCreatedRange | [Int, Int] | | filter by created time range, time format is `unix timestamp`
+timeCreatedRange | [Int, Int] | | filter by created time range, time format is **unix timestamp**
 
-Response ticket list fields:
+### Response Ticket List Fields
 
-field name | type | required | description
+Name | Type | Required | Description
 --- | --- | --- | ---
 length | Int | True | total matches count
 edges | List | True | ticket node list
 edges.node | [Ticket](#ticket-node) | | ticket node, please see [Ticket](#ticket-node) definition below
 
-The same is true for `refundTicketList` and `orderQuestionTicketList`.
+The same is true for **refundTicketList** and **orderQuestionTicketList**.
 
 ## Create Ticket
 
@@ -108,10 +100,10 @@ mutation CreateExchangeItemTicket(
 }
 ```
 
-You can get the orderItemId through the [Create Order](/order.md#create-order) method and get the imageId through the [Upload Image](./image_and_video.md#upload-image) method.
+You can get the orderItemId through the [Create Order](#create-order) method and get the imageId through the [Upload Image](#upload-image) method.
 Response ticket structure details, please see [Query Ticket](#query-ticket).
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -121,9 +113,9 @@ firstName | String | True | ticket author's firstname
 lastName | String | True | ticket author's lastname
 email | String | True | ticket author's email
 
-Similar to creating an exchange item ticket, creating a refund ticket requires firstName, lastName, email, reason, problemType, itemDeliveryStatus and imageIds.Creating a order question ticket requires firstName, lastName, email, itemDeliveryStatus and imageIds.
+Similar to creating an exchange item ticket, creating a **refund ticket** requires firstName, lastName, email, reason, problemType, itemDeliveryStatus and imageIds.Creating a **order question ticket** requires firstName, lastName, email, itemDeliveryStatus and imageIds.
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -133,7 +125,7 @@ itemDeliveryStatus | Enum | True | RECEIVED, NOT_RECEIVED
 
 ## Query Ticket
 
-Query ticket with reply id.
+Query ticket with `reply_id`.
 
 ```graphql
 query exchangeItemTicket($ticketId: ID!) {
@@ -159,9 +151,7 @@ query exchangeItemTicket($ticketId: ID!) {
 }
 ```
 
-<a name="ticket-node" />
-
-`Ticket` fields:
+### Ticket Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -173,13 +163,14 @@ firstName | String | True | ticket author's firstname
 lastName | String | True | ticket author's lastname
 email | String | True | ticket author's email
 remark | String | True | remark
-comments.edges | List | | ticket comment node list
-comments.edges.node | [Comment](#comment-node) | | ticket comment node, please see [Comment](#comment-node) definition below
+comments.edges | List | False | ticket comment node list
+comments.edges.node | [Comment](#comment-node) | False | ticket comment node, please see [Comment](#comment-node) definition below
 comments.length | Int | True | total comments matches count
 
-<a name="comment-node" />
 
-Comment Variables:
+<span id="comment-node"></span>
+
+### Comment Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -189,7 +180,7 @@ content | String | True | ticket reply content
 
 We need you to provide a url to accept the `POST` method for the shoppo call to reply ticket.
 
-Post Variables:
+### Post Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -219,7 +210,7 @@ If the reply is successful, we would like to reply 200, and the reply is as foll
 
 ## Reply Ticket
 
-The user can reply to the return ticket with the reply id.
+The user can reply to the return ticket with the `reply_id`.
 
 ```graphql
 mutation ReplyCustomerServiceTicket(
@@ -235,11 +226,13 @@ mutation ReplyCustomerServiceTicket(
 }
 ```
 
-Response Variables:
+### Response Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 success | Boolean | True | 
+
+<span id="ticket-status"></span>
 
 ### Ticket Status
 

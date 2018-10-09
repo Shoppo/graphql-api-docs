@@ -1,3 +1,9 @@
+# Order
+
+## Shoppo Order Workflow
+
+![](./images/order-flow.png)
+
 ## Order List
 
 ```graphql
@@ -26,33 +32,32 @@ query orderList(
 }
 ```
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-first | Int | | limit size
-last | Int | | limit size
-after | String | | offset cursor
-before | String | | offset cursor
-filters | [OrderFilterInput](#orderFilterInput) | | filter parameters
+first | Int | False | limit size
+last | Int | False | limit size
+after | String | False | offset cursor
+before | String | False | offset cursor
+filters | [OrderFilterInput](#order-filter-input) | False | filter parameters
 
-`OrderFilterInput` fields:
+<span id="order-filter-input"></span>
+
+### OrderFilterInput Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-timeCreatedRange | [Int, Int] | | filter by created time range, time format is `unix timestamp`
+timeCreatedRange | [Int, Int] | False | filter by created time range, time format is **unix timestamp**
 
-Response order list fields:
+### Response Order List Fields
 
 field name | type | required | description
 --- | --- | --- | ---
 length | Int | True | total matches count
 edges | List | True | order node list
-edges.node | [Order](#orderNode) | | order node, please see [Order](#orderNode) definition below
+edges.node | [Order](#order-node) | False | order node, please see [Order Node](#order-node) definition below
 
-## Shoppo Order Workflow
-
-![GraphiQLProduct](./imgs/order-flow.png)
 
 ## Create Order
 
@@ -62,7 +67,6 @@ Create order with Sku items and shipping address.
 * When user paid the order, call another request to set the order as paid.
 * When user cancel the order before paid, call another request to cancel the order.
 
-Create Order Mutation:
 ```graphql
 mutation createOrder(
   $shippingAddress: ShippingAddressInput!,
@@ -92,28 +96,28 @@ mutation createOrder(
 }
 ```
 
-Response order structure details, please see [Query Order](#queryOrder)
-
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-shippingAddress | [ShippingAddressInput](#shippingAddress) | True | address object
-orderItems | [[OrderItemInput](#orderItemInput)!]! | True | order items contains Sku ID and quantity
+shippingAddress | [ShippingAddressInput](#shipping-address) | True | address object
+orderItems | [[OrderItemInput](#order-item-input)!]! | True | order items contains Sku ID and quantity
+trackingNumber | String | False | partner tracking number
 
-<a name="orderItemInput" />
-OrderItemInput Fields:
+<span id="order-item-input"></span>
+
+### OrderItemInput Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 skuId | ID | True | Sku relay id
 quantity | Int | True | buy Sku quantity
 
-<a name="queryOrder" />
+The response of order structure details, please see [Order Node](#Order-node)
 
 ## Query Order
 
-Query order with relay id
+Query order with `relay_id`
 
 ```graphql
 query order($id: ID!) {
@@ -133,27 +137,26 @@ query order($id: ID!) {
 }
 ```
 
-<a name="orderNode" />
+<span id="order-node"></span>
 
-`Order` fields:
+### Order Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 discount_amount | Float | True | discount amount
 id | ID | True | order relay id
-order_items | [[OrderItem](#orderItemNode)] | True | order item list
+order_items | [[OrderItem](#order-item-node)] | True | order item list
 order_subtotal | Float | True | sum of products amount and shipping fee
 order_total | Float | True | customer paid amount
-shipping_address | [shippingAddress](#shippingAddress) | True | address object
+shipping_address | [ShippingAddress](#shipping-address) | True | address object
 shipping_cost | Float | True | total shipping fee amount
-status | [OrderStatus](#orderStatus) | True | order enums status
-refund_status | [OrderRefundStatus](#orderRefundStatus) | |  order enums refund status
+status | [OrderStatus](#order-status) | True | order enums status
+refund_status | [OrderRefundStatus](#order-refund-status) | False |  order enums refund status
 time_created | Int | True | unix timestamp for order created at
-time_payment_processed | Int | | unix timestamp for order paid at
+time_payment_processed | Int | False | unix timestamp for order paid at
+tracking_number | String | False | order tracking number
 
-<a name="queryOrderItem" />
-
-## Query Order Item
+## Query OrderItem
 
 ```graphql
 query orderItem($id: ID!) {
@@ -177,31 +180,29 @@ query orderItem($id: ID!) {
 }
 ```
 
-<a name="orderItemNode" />
+<span id="order-item-node"></span>
 
-Order item fields:
+### Order Item Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 id | ID | True | order item relay id
-is_refunded | Boolean | | the order item whether is refunded or not
-order | [Order](#orderNode) | True | order item's order object
-product | [Product](./product.md#productNode) | True | product snapshot
+is_refunded | Boolean | False | the order item whether is refunded or not
+order | [Order](#order-node) | True | order item's order object
+product | [Product](#product-node) | True | product snapshot
 `product.id` | ID | True | product snapshot relay id
 `product.originalId` | ID | True | product relay id, if you want retrieve product, use `originalId` other than `id`
 quantity | Int | True | number for buy this Sku
-refundedAmount | Float | | if order item is refunded, the amount will be return
-shippingRefunded | Boolean | | if refunded, the refunded amount whether contains shipping fee or not
-sku | [Sku](./product.md#skuNode) | True | sku snapshot
+refundedAmount | Float | False | if order item is refunded, the amount will be return
+shippingRefunded | Boolean | False | if refunded, the refunded amount whether contains shipping fee or not
+sku | [Sku](#sku-node) | True | sku snapshot
 `sku.id` | ID | True | Sku snapshot relay id
 `sku.originalId` | ID | True | Sku relay id, if you want retrieve Sku, use `originalId` other than `id`
-shippingPackage | [ShippingPackage](#shippingPackage) | | order item's shipping package
-shippingProvider | String | | Courier name for shipping package
-status | [OrderItemStatus](#orderItemStatus) | True | order item status enum
-trackingNumber | String | | tracking number for the package
-timeRefunded | Int | | if refunded, unix timestamp for refund created at
-
-<a name="setOrderAsPaid" />
+shippingPackage | [ShippingPackage](#shipping-package) | False | order item's shipping package
+shippingProvider | String | False | Courier name for shipping package
+status | [OrderItemStatus](#order-item-status) | True | order item status enum
+trackingNumber | String | False | tracking number for the package
+timeRefunded | Int | False | unix timestamp for refund created at if refunded
 
 ## Set Order as Paid
 
@@ -224,14 +225,12 @@ mutation setOrderAsPaid($orderId: ID!, $chargeId: String!) {
 }
 ```
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 orderId | ID | True | order relay id to set paid
 chargeId | String | True | Partner charge id for the order and should be unique
-
-<a name="cancelOrderItem" />
 
 ## Cancel OrderItem
 
@@ -248,18 +247,39 @@ mutation cancelOrderItem($orderItemId: ID!) {
 }
 ```
 
-Variables:
+### Variables
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 orderItemId | ID | True | order item relay id to cancel
 
-<a name="shippingAddress" />
+## Cancel Order
 
-## Shipping Address
+If your order has many order items and you need to cancel all items, you can use the cancel order interface as below. Same as cancel order item, only when all order items status of this order are `PAID`, you could cancel order directly, otherwise you need create customer service ticket.
+
+
+```graphql
+mutation cancelOrder($orderId: ID!) {
+  cancelOrder(orderId: $orderId) {
+    order {
+      id
+      status
+    }
+  }
+}
+```
+
+### Variables
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+orderId | ID | True | order relay id to cancel
+
+<span id="shipping-address"></span>
+
+### Shipping Address Fields
+
 The address for packages shipped to customer
-
-Fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
@@ -269,14 +289,13 @@ streetAddress1 | String | True | Address 1
 streetAddress2 | String | True | Address 2
 city | String | True | city name
 state | String | True | state name
-countryCode | [CountryCode](./product.md#countryCode)| True | country code, e.g.  `US` for `United States`
+countryCode | [CountryCode](#country-code)| True | country code, e.g.  `US` for `United States`
 zipcode | String | True | zip code
 phoneNumber | String | True | recipient phone number
 
-<a name="orderStatus" />
+<span id="order-status"></span>
 
-### Order Status
-Order status enums
+### Order Status Enums
 
 Value | Description
 --- | ---
@@ -287,11 +306,9 @@ DELIVERED | packages are sent to couriers
 CLOSED | customer cancelled the order
 EXPIRED | order expired and could not pay for this order
 
+<span id="order-refund-status"></span>
 
-<a name="orderRefundStatus" />
-
-### Order Refund Status
-Order refund status enums
+### Order Refund Status Enums
 
 Value | Description
 --- | ---
@@ -299,11 +316,9 @@ FULL_REFUNDED | all order items are refunded
 PARTIAL_REFUNDED | part of order items are refunded
 NOT_REFUNDED | none of order items are refunded
 
+<span id="order-item-status"></span>
 
-<a name="orderItemStatus" />
-
-### OrderItem Status
-OrderItem status enums
+### OrderItem Status Enums
 
 Value | Description
 --- | ---
@@ -314,47 +329,43 @@ SHIPPED | the package is on the way to deliver to customer
 DELIVERED | customer confirmed he received the package
 CANCELLED | order item is cancelled
 
-<a name="shippingPackage" />
+<span id="shipping-package"></span>
 
-## Shipping Package
-
-Fields:
+### Shipping Package Fields
 
 Name | Type | Required | Description
 --- | --- | --- | ---
 id | ID | True | relay id
-checkpoints | [[Checkpoint](#checkpoint)] | | tracking info
+checkpoints | [[Checkpoint](#checkpoint)] | False | tracking info
 courier | String | True | shipping provider name
 isDelivered | Boolean | True | whether package is delivered
 status | String | True | packpage current status
-timeDelivered | Int | | delivered at, `unix timestamp`
-timeLanded  | Int | | landed at, `unix timestamp`
-timeShipped | Int | | shipped at, `unix timestamp`
-timeTracked | Int | | tracked at, `unix timestamp`
+timeDelivered | Int | False | delivered at, **unix timestamp**
+timeLanded  | Int | False | landed at, **unix timestamp**
+timeShipped | Int | False | shipped at, **unix timestamp**
+timeTracked | Int | False | tracked at, **unix timestamp**
 trackingNumber | String | True | tracking number
 
-<a name="checkpoint" />
+<span id="checkpoint"></span>
 
-`Checkpoint` fields:
+### Checkpoint Fields:
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-courier | String | | courier name
-time | Int | | checkpoint happened at, `unix timestamp`
-message | String | | event description
-location | String | | location
+courier | String | False | courier name
+time | Int | False | checkpoint happened at, **unix timestamp**
+message | String | False | event description
+location | String | False | location
 
-<a name="refundReasonType" />
+<span id="refund-reason-type"></span>
 
-## Refund Reason Type
-
-Reason for refund order item
+### Refund Reason Type Enums
 
 Value | Description
 --- | ---
-CUSTOMER_CANCELED | CUSTOMER_CANCELED
-OUT_OF_STOCK | Sku OUT_OF_STOCK
-BAD_SHIPPING_ADDRESS | BAD_SHIPPING_ADDRESS
-AGREEMENT_WITH_USER | AGREEMENT_WITH_USER
-FRAUDULENT_PURCHASE | FRAUDULENT_PURCHASE
-NOT_SHIPPED_TOO_LONG | NOT_SHIPPED_TOO_LONG
+CUSTOMER_CANCELED | customer canceled order
+OUT_OF_STOCK | sku is out of stock
+BAD_SHIPPING_ADDRESS | the shipping address is wrong
+AGREEMENT_WITH_USER | negotiate with the user
+FRAUDULENT_PURCHASE | fraudulent purchase
+NOT_SHIPPED_TOO_LONG | not transported for too long

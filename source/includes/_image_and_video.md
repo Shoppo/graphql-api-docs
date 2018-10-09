@@ -1,25 +1,10 @@
-<a name="image" />
+# Image and Video
 
-## Image
+## Upload Image
 
-Image fields:
+You can get the image_id by using the UploadImage method on the right.
 
-field name | type | required | description
---- | --- | --- | ---
-id | `ID` | True | image `relay_id`
-checksum | String | True | image hash
-originalHeight | Int | True | original image height
-originalWidth | Int  | True | original image width
-originalUrl | String | True | original image CDN url
-mainColor | String | True | Main color in this image in hex format
-type | String | True | image format, `png/jpeg`
-versions | List | True | All available versions of this image
-
-### Upload Image
-
-You can get the image_id by using the UploadImage method below.
-
-```
+```graphql
 mutation uploadImage($image: File!) {
   uploadImage(file: $image) {
     image {
@@ -39,9 +24,22 @@ mutation uploadImage($image: File!) {
 }    
 ```
 
-The expected result is as follows.
+### Image Fields
 
-```
+Name | Type | Required | Description
+--- | --- | --- | ---
+id | ID | True | image `relay_id`
+checksum | String | True | image hash
+originalHeight | Int | True | original image height
+originalWidth | Int  | True | original image width
+originalUrl | String | True | original image CDN url
+mainColor | String | True | Main color in this image in hex format
+type | String | True | image format, `png/jpeg`
+versions | List | True | All available versions of this image
+
+The expected result is shown on the right.
+
+```json
 {
   "data": {
     "uploadImage": {
@@ -80,15 +78,10 @@ The expected result is as follows.
 }
 ```
 
+### Video Fields
 
-<a name="video" />
-
-## Video
-
-Video fields:
-
-field name | type | required | description
+Name | Type | Required | Description
 --- | --- | --- | ---
-id | `ID` | True | video `relay_id`
+id | ID | True | video `relay_id`
 checksum | String | True | video hash
 rowUrl | String | True | original video Url
