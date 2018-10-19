@@ -143,6 +143,7 @@ filters | [ProductFilterInput](#product-filter-input) | False | filters
 Name | Type | Required | Description
 --- | --- | --- | ---
 timeUpdatedRange | [Int, Int] | False | filter by updated time range, time format is **unix timestamp**
+productEnabled | Boolean | False | is product enabled
 
 ### Response Product List Fields
 
