@@ -198,6 +198,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+    <link href="stylesheets/zoom.css" rel="stylesheet" />
       <script src="javascripts/all.js"></script>
   </head>
 
@@ -352,7 +353,7 @@
 
 <p>In the menu, you can see our GraphQL Schema. Basically, <strong>RootQuery</strong> for supported query objects, and <strong>RootMutation</strong> for supported mutations. And of course, you can search a specific schema in the search box. For example, you search <strong>Product</strong> and see what is a <strong>Product</strong>.</p>
 
-<p><img src="./images/graphiql_product.png" width="40%"></p>
+<p><img src="images/graphiql_product.png" alt="product" /></p>
 
 <p>As shown in the screenshot, all supported field are listed with name and type and you can know if the field is required. If you click on the field name, you can get a simple description of the field.</p>
 <h2 id='using-java'>Using Java</h2>
@@ -363,6 +364,12 @@
 <li><a href="https://github.com/Shopify/graphql_java_gen">graphql_java_gen</a></li>
 <li><a href="https://github.com/graphql-java/graphql-java">graphql-java</a></li>
 </ul>
+
+<style>
+img[alt=product] {
+    width: 50%
+}
+</style>
 <h1 id='authentication'>Authentication</h1>
 <p>You need to pass the <code>accesstoken</code> and <code>viewerid</code> fields in request header to pass the authentication.In addition, you need to set the Content-type to application/json.</p>
 
@@ -728,6 +735,12 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 <td>[Int, Int]</td>
 <td>False</td>
 <td>filter by updated time range, time format is <strong>unix timestamp</strong></td>
+</tr>
+<tr>
+<td>productEnabled</td>
+<td>Boolean</td>
+<td>False</td>
+<td>is product enabled</td>
 </tr>
 </tbody></table>
 <h3 id='response-product-list-fields'>Response Product List Fields</h3>
@@ -2311,5 +2324,9 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
           </div>
       </div>
     </div>
+    <script>
+    $('.content p > img').attr('data-action', 'zoom');
+    </script>
+    <script src="javascripts/zoom.js"></script>
   </body>
 </html>

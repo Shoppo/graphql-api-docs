@@ -48,7 +48,12 @@ filters | [OrderFilterInput](#order-filter-input) | False | filter parameters
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-timeCreatedRange | [Int, Int] | False | filter by created time range, time format is **unix timestamp**
+order_id | String | False | The shoppo order id
+partner_order_code | String | False | The partner order code
+sku_id | String | False | The sku_id in order
+order_csv_upload_record_id | String | False | The order csv upload record id
+time_payment_processed_range | [Int, Int] | False | Time payment range
+status_in | [[OrderStatus](#order-status)] | Fasle | order status list
 
 ### Response Order List Fields
 

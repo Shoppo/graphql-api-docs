@@ -48,7 +48,7 @@ extraImages | [[Image](#image)] | False | product images list object
 features | [String] | False | product features, there are at most 5 features
 name | String | True | product name
 inventory | Int | True | total count could to sell
-skus | [Sku](#sku-node) | True | Sku list
+skus | [[Sku](#sku-node)] | True | Sku list
 targetUserType | [TargetUserType](#target-user-type) | True | product is fit for
 whiteBackgroundImage | [Image](#image) | True | white background image object
 
