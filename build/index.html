@@ -513,7 +513,7 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 </tr>
 <tr>
 <td>skus</td>
-<td><a href="#sku-node">Sku</a></td>
+<td>[<a href="#sku-node">Sku</a>]</td>
 <td>True</td>
 <td>Sku list</td>
 </tr>
@@ -992,10 +992,40 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 </tr>
 </thead><tbody>
 <tr>
-<td>timeCreatedRange</td>
+<td>order_id</td>
+<td>String</td>
+<td>False</td>
+<td>The shoppo order id</td>
+</tr>
+<tr>
+<td>partner_order_code</td>
+<td>String</td>
+<td>False</td>
+<td>The partner order code</td>
+</tr>
+<tr>
+<td>sku_id</td>
+<td>String</td>
+<td>False</td>
+<td>The sku_id in order</td>
+</tr>
+<tr>
+<td>order_csv_upload_record_id</td>
+<td>String</td>
+<td>False</td>
+<td>The order csv upload record id</td>
+</tr>
+<tr>
+<td>time_payment_processed_range</td>
 <td>[Int, Int]</td>
 <td>False</td>
-<td>filter by created time range, time format is <strong>unix timestamp</strong></td>
+<td>Time payment range</td>
+</tr>
+<tr>
+<td>status_in</td>
+<td>[<a href="#order-status">OrderStatus</a>]</td>
+<td>Fasle</td>
+<td>order status list</td>
 </tr>
 </tbody></table>
 <h3 id='response-order-list-fields'>Response Order List Fields</h3>
@@ -1037,10 +1067,14 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 <div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">mutation</span><span class="w"> </span><span class="n">createOrder</span><span class="p">(</span><span class="w">
   </span><span class="nv">$shippingAddress</span><span class="p">:</span><span class="w"> </span><span class="n">ShippingAddressInput</span><span class="p">!,</span><span class="w">
   </span><span class="nv">$orderItems</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">OrderItemInput</span><span class="p">!]!,</span><span class="w">
+  </span><span class="nv">$partnerOrderCode</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">!,</span><span class="w">
+  </span><span class="nv">$trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">
 </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">createOrder</span><span class="p">(</span><span class="w">
     </span><span class="n">shippingAddress</span><span class="p">:</span><span class="w"> </span><span class="nv">$shippingAddress</span><span class="p">,</span><span class="w">
     </span><span class="n">orderItems</span><span class="p">:</span><span class="w"> </span><span class="nv">$orderItems</span><span class="p">,</span><span class="w">
+    </span><span class="n">partnerOrderCode</span><span class="p">:</span><span class="w"> </span><span class="nv">$partnerOrderCode</span><span class="p">,</span><span class="w">
+    </span><span class="n">trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nv">$trackingNumber</span><span class="w">
     </span><span class="p">){</span><span class="w">
       </span><span class="n">order</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="n">id</span><span class="w">
@@ -1080,6 +1114,12 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 <td>[<a href="#order-item-input">OrderItemInput</a>!]!</td>
 <td>True</td>
 <td>order items contains Sku ID and quantity</td>
+</tr>
+<tr>
+<td>partnerOrderCode</td>
+<td>String</td>
+<td>True</td>
+<td>partner code code</td>
 </tr>
 <tr>
 <td>trackingNumber</td>

@@ -76,10 +76,14 @@ Create order with Sku items and shipping address.
 mutation createOrder(
   $shippingAddress: ShippingAddressInput!,
   $orderItems: [OrderItemInput!]!,
+  $partnerOrderCode: String!,
+  $trackingNumber: String
 ) {
   createOrder(
     shippingAddress: $shippingAddress,
     orderItems: $orderItems,
+    partnerOrderCode: $partnerOrderCode,
+    trackingNumber: $trackingNumber
     ){
       order {
         id
@@ -107,6 +111,7 @@ Name | Type | Required | Description
 --- | --- | --- | ---
 shippingAddress | [ShippingAddressInput](#shipping-address) | True | address object
 orderItems | [[OrderItemInput](#order-item-input)!]! | True | order items contains Sku ID and quantity
+partnerOrderCode | String | True | partner code code
 trackingNumber | String | False | partner tracking number
 
 <span id="order-item-input"></span>
