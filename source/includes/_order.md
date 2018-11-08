@@ -64,6 +64,13 @@ edges | List | True | order node list
 edges.node | [Order](#order-node) | False | order node, please see [Order Node](#order-node) definition below
 
 
+
+## Sync Order Status Workflow
+
+
+![](./images/order-list.png)
+
+
 ## Create Order
 
 Create order with Sku items and shipping address.
