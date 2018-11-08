@@ -14,6 +14,7 @@ includes:
   - order
   - image_and_video
   - ticket
+  - proactive_notification
 
 search: true
 ---
