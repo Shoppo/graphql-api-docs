@@ -6,6 +6,7 @@ In order to notify you of our product and sku changes in a timely manner, we nee
 
 For each interface, you need to provide a url to accept the corresponding parameters and return the correct result. For the correct result, you need to return a response code of 200. For other incorrect results, return a non-200 response code.
 
+
 ## Create Product
 
 ### post params
@@ -88,7 +89,8 @@ For each interface, you need to provide a url to accept the corresponding parame
     "merchant": {
         "id": "",
         "name": ""
-    }
+    },
+    "time_updated"
 }
 ```
 
@@ -107,6 +109,7 @@ inventory | Int | True | total count could to sell
 skus | [[Sku](#sku-node)] | True | Sku list
 targetUserType | [TargetUserType](#target-user-type) | True | product is fit for
 whiteBackgroundImage | [Image](#image) | True | white background image object
+time_updated | Int | True | timestamp
 
 
 ## Update Product
@@ -192,7 +195,8 @@ whiteBackgroundImage | [Image](#image) | True | white background image object
     "merchant": {
         "id": "",
         "name": ""
-    }
+    },
+    "time_updated"
 }
 ```
 
@@ -212,6 +216,8 @@ inventory | Int | False | total count could to sell
 skus | [[Sku](#sku-node)] | False | Sku list
 targetUserType | [TargetUserType](#target-user-type) | False | product is fit for
 whiteBackgroundImage | [Image](#image) | False | white background image object
+time_updated | Int | True | timestamp
+
 
 ## Create Sku
 
@@ -246,7 +252,11 @@ whiteBackgroundImage | [Image](#image) | False | white background image object
     },
     "enabled": "",
     "global_shipping_config": "",
-    "merchant": ""
+    "merchant": {
+        "id": "",
+        "name": ""
+    },
+    "time_updated"
 }
 ```
 
@@ -267,6 +277,7 @@ shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all
 size | String | False | default unit is **inch**
 weight | String | False | default unit is **Pound**
 width | String | False | default unit is **inch**
+time_updated | Int | True | timestamp
 
 
 ## Update Sku
@@ -303,7 +314,11 @@ width | String | False | default unit is **inch**
     },
     "enabled": "",
     "global_shipping_config": "",
-    "merchant": ""
+    "merchant": {
+        "id": "",
+        "name": ""
+    },
+    "time_updated"
 }
 ```
 
@@ -325,3 +340,26 @@ shippingTime | String | False | Shipping days range, e.g., 3-10 days, product al
 size | String | False | default unit is **inch**
 weight | String | False | default unit is **Pound**
 width | String | False | default unit is **inch**
+time_updated | Int | True | timestamp
+
+
+## Toggle Enabled Merchant
+
+```json
+{
+    "merchant_toggle_list": [
+        {
+            "merchant_id": "",
+            "enabled": ""
+        }
+    ],
+    "time_updated": ""
+}
+```
+
+### params
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+merchant_toggle_list | List | True | merchant toggle list
+time_updated | Int | merchant_toggle_list | timestamp
