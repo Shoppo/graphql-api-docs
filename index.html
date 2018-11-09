@@ -336,6 +336,9 @@
                   <li>
                     <a href="#update-sku" class="toc-h2 toc-link" data-title="Update Sku">Update Sku</a>
                   </li>
+                  <li>
+                    <a href="#toggle-enabled-merchant" class="toc-h2 toc-link" data-title="Toggle Enabled Merchant">Toggle Enabled Merchant</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -2459,7 +2462,8 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
     </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"time_updated"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -2548,6 +2552,12 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>True</td>
 <td>white background image object</td>
 </tr>
+<tr>
+<td>time_updated</td>
+<td>Int</td>
+<td>True</td>
+<td>timestamp</td>
+</tr>
 </tbody></table>
 <h2 id='update-product'>Update Product</h2><h3 id='post-params-2'>post params</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2627,7 +2637,8 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
     </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"time_updated"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -2722,6 +2733,12 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>False</td>
 <td>white background image object</td>
 </tr>
+<tr>
+<td>time_updated</td>
+<td>Int</td>
+<td>True</td>
+<td>timestamp</td>
+</tr>
 </tbody></table>
 <h2 id='create-sku'>Create Sku</h2><h3 id='post-params-3'>post params</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2751,7 +2768,11 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"global_shipping_config"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"time_updated"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -2852,6 +2873,12 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>False</td>
 <td>default unit is <strong>inch</strong></td>
 </tr>
+<tr>
+<td>time_updated</td>
+<td>Int</td>
+<td>True</td>
+<td>timestamp</td>
+</tr>
 </tbody></table>
 <h2 id='update-sku'>Update Sku</h2><h3 id='post-params-4'>post params</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"sku_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2882,7 +2909,11 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"global_shipping_config"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"time_updated"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -2988,6 +3019,43 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>String</td>
 <td>False</td>
 <td>default unit is <strong>inch</strong></td>
+</tr>
+<tr>
+<td>time_updated</td>
+<td>Int</td>
+<td>True</td>
+<td>timestamp</td>
+</tr>
+</tbody></table>
+<h2 id='toggle-enabled-merchant'>Toggle Enabled Merchant</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"merchant_toggle_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"time_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='params'>params</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_toggle_list</td>
+<td>List</td>
+<td>True</td>
+<td>merchant toggle list</td>
+</tr>
+<tr>
+<td>time_updated</td>
+<td>Int</td>
+<td>merchant_toggle_list</td>
+<td>timestamp</td>
 </tr>
 </tbody></table>
 
