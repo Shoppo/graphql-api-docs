@@ -1093,13 +1093,15 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
   </span><span class="nv">$shippingAddress</span><span class="p">:</span><span class="w"> </span><span class="n">ShippingAddressInput</span><span class="p">!,</span><span class="w">
   </span><span class="nv">$orderItems</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">OrderItemInput</span><span class="p">!]!,</span><span class="w">
   </span><span class="nv">$partnerOrderCode</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">!,</span><span class="w">
-  </span><span class="nv">$trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">
+  </span><span class="nv">$trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w">
+  </span><span class="nv">$partnerSellerName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w">
 </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">createOrder</span><span class="p">(</span><span class="w">
     </span><span class="n">shippingAddress</span><span class="p">:</span><span class="w"> </span><span class="nv">$shippingAddress</span><span class="p">,</span><span class="w">
     </span><span class="n">orderItems</span><span class="p">:</span><span class="w"> </span><span class="nv">$orderItems</span><span class="p">,</span><span class="w">
     </span><span class="n">partnerOrderCode</span><span class="p">:</span><span class="w"> </span><span class="nv">$partnerOrderCode</span><span class="p">,</span><span class="w">
-    </span><span class="n">trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nv">$trackingNumber</span><span class="w">
+    </span><span class="n">trackingNumber</span><span class="p">:</span><span class="w"> </span><span class="nv">$trackingNumber</span><span class="p">,</span><span class="w">
+    </span><span class="n">partnerSellerName</span><span class="p">:</span><span class="w"> </span><span class="nv">$partnerSellerName</span><span class="w">
     </span><span class="p">){</span><span class="w">
       </span><span class="n">order</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="n">id</span><span class="w">
@@ -1151,6 +1153,12 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 <td>String</td>
 <td>False</td>
 <td>partner tracking number</td>
+</tr>
+<tr>
+<td>partnerSellerName</td>
+<td>String</td>
+<td>False</td>
+<td>partner seller name</td>
 </tr>
 </tbody></table>
 
