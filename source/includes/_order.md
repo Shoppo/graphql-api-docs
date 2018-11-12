@@ -122,7 +122,7 @@ shippingAddress | [ShippingAddressInput](#shipping-address) | True | address obj
 orderItems | [[OrderItemInput](#order-item-input)!]! | True | order items contains Sku ID and quantity
 partnerOrderCode | String | True | partner code code
 trackingNumber | String | False | partner tracking number
-partnerSellerName | String | False | partner seller name
+partnerSellerName | String | False | the virtual seller name of shoppo, shoppo may have different seller name for different product.
 
 <span id="order-item-input"></span>
 
