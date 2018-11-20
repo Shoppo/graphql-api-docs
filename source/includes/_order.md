@@ -1,5 +1,10 @@
 # Order
 
+<aside class="notice">
+Since our order status will be updated at any time, you need to periodically request our interface to update your order status.
+</aside>
+
+
 ## Shoppo Order Workflow
 
 ![](./images/order-flow.png)

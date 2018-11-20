@@ -2,6 +2,10 @@
 
 You can query the product list and product category through API.
 
+<aside class="notice">
+Since some of our previous categories did not distinguish between men and women, the two categories of men and women shared the same category id. In order to distinguish, we did the following processing, adding 0 and 1 after the original category id, 0 at the end of the original category represents male or boy, 1 represents female or girl. So if the category id is 7 digits, then the original category has not changed. If the category id is 8 digits, the last digit is the marker used to distinguish between men and women.
+</aside>
+
 ## Query Single Product
 
 Query a single **Product** with `relay_id`
