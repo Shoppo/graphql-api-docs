@@ -13,15 +13,11 @@ You must replace <code>your accesstoke</code> and <code>your viewerid</code> wit
 ## How to use
 
 ```graphql
-query Test {
-  productSearch {
-    skus(first:10) {
-      length
-      edges {
-        node {
-          id
-        }
-      }
+query product($id: ID!) {
+  node(id: $id) {
+    ... on Product {
+      id
+      name
     }
   }
 }
@@ -39,4 +35,4 @@ To use **cURL**, you need a valid GraphQL request body. The format is: `{"query"
 
 An example using Product Feed Query Object is shown below:
 
-`curl -X POST -H "Content-Type: application/json" -H "accesstoken: your_accesstoken" -H "viewerid: your_viewerid" --data '{"query":"query AdminSkuFeed { \n  productSearch {\n    skus(first:10) {\n      length\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n}\n","variables":{"mode":"feed","boostOverrides":[],"first":24,"after":""},"operationName":"AdminSkuFeed"}' https://graphql-dev.shoppo.com/api/graphql/partner`
+`curl -X POST -H "Content-Type: application/json" -H "accesstoken: your_accesstoken" -H "viewerid: your_viewerid" --data '{"query":"query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n","variables":{"id": "leZwJZoYvBfy"},"operationName":"Product"}' https://graphql-dev.shoppo.com/api/graphql/partner`

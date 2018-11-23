@@ -405,15 +405,11 @@ img[alt=product] {
 <aside class="notice">
 You must replace <code>your accesstoke</code> and <code>your viewerid</code> with your personal API key.
 </aside>
-<h2 id='how-to-use'>How to use</h2><div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="n">Test</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="n">productSearch</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="n">skus</span><span class="p">(</span><span class="n">first</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="n">length</span><span class="w">
-      </span><span class="n">edges</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="n">node</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="n">id</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+<h2 id='how-to-use'>How to use</h2><div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="nv">$id</span><span class="p">:</span><span class="w"> </span><span class="nb">ID</span><span class="p">!)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">node</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="nv">$id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Product</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">id</span><span class="w">
+      </span><span class="n">name</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -430,9 +426,13 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 
 <p>An example using Product Feed Query Object is shown below:</p>
 
-<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query AdminSkuFeed { \n  productSearch {\n    skus(first:10) {\n      length\n      edges {\n        node {\n          id\n        }\n      }\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;mode&quot;:&quot;feed&quot;,&quot;boostOverrides&quot;:[],&quot;first&quot;:24,&quot;after&quot;:&quot;&quot;},&quot;operationName&quot;:&quot;AdminSkuFeed&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
+<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;id&quot;: &quot;leZwJZoYvBfy&quot;},&quot;operationName&quot;:&quot;Product&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
 <h1 id='product'>Product</h1>
 <p>You can query the product list and product category through API.</p>
+
+<aside class="notice">
+Since some of our previous categories did not distinguish between men and women, the two categories of men and women shared the same category id. In order to distinguish, we did the following processing, adding 0 and 1 after the original category id, 0 at the end of the original category represents male or boy, 1 represents female or girl. So if the category id is 7 digits, then the original category has not changed. If the category id is 8 digits, the last digit is the marker used to distinguish between men and women.
+</aside>
 <h2 id='query-single-product'>Query Single Product</h2>
 <p>Query a single <strong>Product</strong> with <code>relay_id</code></p>
 <div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="n">product</span><span class="p">(</span><span class="nv">$id</span><span class="p">:</span><span class="w"> </span><span class="nb">ID</span><span class="p">!)</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -938,7 +938,11 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 <td>Kenya</td>
 </tr>
 </tbody></table>
-<h1 id='order'>Order</h1><h2 id='shoppo-order-workflow'>Shoppo Order Workflow</h2>
+<h1 id='order'>Order</h1>
+<aside class="notice">
+Since our order status will be updated at any time, you need to periodically request our interface to update your order status.
+</aside>
+<h2 id='shoppo-order-workflow'>Shoppo Order Workflow</h2>
 <p><img src="images/order-flow.png" alt="Order flow" /></p>
 <h2 id='order-list'>Order List</h2><div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="n">orderList</span><span class="p">(</span><span class="w">
     </span><span class="nv">$first</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">,</span><span class="w">
