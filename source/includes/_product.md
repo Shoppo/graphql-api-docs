@@ -21,7 +21,9 @@ query product($id: ID!) {
         categoryId
         path
       }
-      coverImage
+      coverImage {
+        id
+      }
       skus {
         id
         price
