@@ -242,9 +242,15 @@ mutation setOrderAsPaid($orderId: ID!, $chargeId: String!) {
       status
       timePaymentProcessed
       orderTotal
+      orderSubtotal
+      shippingCost
       orderItems {
         id
         status
+        sku {
+          price
+          shippingPrice
+        }
       }
     }
   }
