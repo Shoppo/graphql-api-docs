@@ -16,7 +16,6 @@ To use API, you need to POST a GraphQL compatible request body to our API endpoi
 You can explore our API with GraphiQL here:
 
 * Dev: [https://graphql-dev.shoppo.com/console/partner](https://graphql-dev.shoppo.com/console/partner)
-* Prod: [https://graphql.shoppo.com/console/partner](https://graphql.shoppo.com/console/partner)
 
 ![](./images/graphiql_playground.png)
 
