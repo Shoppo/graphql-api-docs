@@ -324,6 +324,7 @@ state | String | True | state name
 countryCode | [CountryCode](#country-code)| True | country code, e.g.  `US` for `United States`
 zipcode | String | True | zip code
 phoneNumber | String | True | recipient phone number
+logisticAttribute | String | False | logistics attribute
 
 <span id="order-status"></span>
 
