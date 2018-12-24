@@ -151,7 +151,7 @@ Name | Type | Required | Description
 timeCreateRange | [Int, Int] | False | filter by created time range, time format is **unix timestamp**
 timeUpdatedRange | [Int, Int] | False | filter by updated time range, time format is **unix timestamp**
 productEnabled | Boolean | False | is product enabled
-CategoryId | String | False | category id
+categoryId | String | False | category id
 
 ### Response Product List Fields
 
