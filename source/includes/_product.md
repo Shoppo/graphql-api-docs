@@ -96,7 +96,7 @@ msrp | Float | False | MSRP
 price | Float | True | currency unit is **USD**
 product | [Product](#product-node) | True | retrieve Sku's product
 shippingConfig | [CustomerShippingConfig](#customer-shipping-config) | True | specialized shipping price and shipping time for multiple countries
-shippingPrice | Float | True | Shipping price for this Sku, product all skus' shipping price are same
+shippingPrice | Float | True | Shipping price for this Sku, product all skus' shipping price are same, currency unit is **USD**
 shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all skus' shipping time are same
 size | String | False | default unit is **inch**
 weight | String | False | default unit is **Pound**
@@ -218,7 +218,7 @@ UNKNOWN | not sure
 Name | Type | Required | Description
 --- | --- | --- | ---
 countryCode | [CountryCode](#country-code) | True | country code enum
-shippingPrice | Float | True | special shipping price for this country
+shippingPrice | Float | True | special shipping price for this country, currency unit is **USD**
 shippingTime | String | True | special shipping time for this country
 
 <span id="country-code"></span>
