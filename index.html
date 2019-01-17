@@ -3099,14 +3099,14 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>timestamp</td>
 </tr>
 </tbody></table>
-<h2 id='cancel-order'>Cancel Order</h2><div class="highlight"><pre class="highlight plaintext"><code>{
-    "action": "cancel_order",
-    "app_key": "vXebxpb7BGec8Y",
-    "order_id": "1361546075101402",
-    "timestamp": 1547705337,
-    "sign": "9C353A8EAA8B1F968F154477B2B6FDB0"
-}
-</code></pre></div><h3 id='params-2'>params</h3>
+<h2 id='cancel-order'>Cancel Order</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vXebxpb7BGec8Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361546075101402"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547705337</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9C353A8EAA8B1F968F154477B2B6FDB0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='params-2'>params</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3129,9 +3129,9 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 </tr>
 <tr>
 <td>timestamp</td>
-<td>Float</td>
+<td>Integer</td>
 <td>True</td>
-<td>timestamp</td>
+<td>timestamp in seconds</td>
 </tr>
 <tr>
 <td>order_id</td>
