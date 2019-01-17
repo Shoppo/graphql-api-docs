@@ -373,7 +373,7 @@ time_updated | Int | merchant_toggle_list | timestamp
 	"app_key": "vXebxpb7BGec8Y",
 	"order_id": "1361546075101402",
 	"timestamp": 1547705337,
-	"sign": "4D75B2587E8E2171461CC6D1DCE5BAC9"
+	"sign": "A29EAE4F8A00EFE88DA231573D0B9327"
 }
 ```
 
