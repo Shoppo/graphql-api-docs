@@ -339,6 +339,9 @@
                   <li>
                     <a href="#toggle-enabled-merchant" class="toc-h2 toc-link" data-title="Toggle Enabled Merchant">Toggle Enabled Merchant</a>
                   </li>
+                  <li>
+                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -3094,6 +3097,53 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>Int</td>
 <td>merchant_toggle_list</td>
 <td>timestamp</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-order'>Cancel Order</h2><div class="highlight"><pre class="highlight plaintext"><code>{
+    "action": "cancel_order",
+    "app_key": "vXebxpb7BGec8Y",
+    "order_id": "1361546075101402",
+    "timestamp": 1547705337,
+    "sign": "9C353A8EAA8B1F968F154477B2B6FDB0"
+}
+</code></pre></div><h3 id='params-2'>params</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>String</td>
+<td>True</td>
+<td>api_method, value is <code>cancel_order</code></td>
+</tr>
+<tr>
+<td>app_key</td>
+<td>String</td>
+<td>True</td>
+<td>app key</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Float</td>
+<td>True</td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>String</td>
+<td>True</td>
+<td>Partner Order Id</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>String</td>
+<td>True</td>
+<td>the api sign</td>
 </tr>
 </tbody></table>
 
