@@ -339,6 +339,9 @@
                   <li>
                     <a href="#toggle-enabled-merchant" class="toc-h2 toc-link" data-title="Toggle Enabled Merchant">Toggle Enabled Merchant</a>
                   </li>
+                  <li>
+                    <a href="#cancel-partner-order" class="toc-h2 toc-link" data-title="Cancel Partner Order">Cancel Partner Order</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -651,7 +654,7 @@ Since some of our previous categories did not distinguish between men and women,
 <td>shippingPrice</td>
 <td>Float</td>
 <td>True</td>
-<td>Shipping price for this Sku, product all skus&#39; shipping price are same</td>
+<td>Shipping price for this Sku, product all skus&#39; shipping price are same, currency unit is <strong>USD</strong></td>
 </tr>
 <tr>
 <td>shippingTime</td>
@@ -908,7 +911,7 @@ Since some of our previous categories did not distinguish between men and women,
 <td>shippingPrice</td>
 <td>Float</td>
 <td>True</td>
-<td>special shipping price for this country</td>
+<td>special shipping price for this country, currency unit is <strong>USD</strong></td>
 </tr>
 <tr>
 <td>shippingTime</td>
@@ -3094,6 +3097,53 @@ Response ticket structure details, please see <a href="#query-ticket">Query Tick
 <td>Int</td>
 <td>merchant_toggle_list</td>
 <td>timestamp</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-partner-order'>Cancel Partner Order</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vXebxpb7BGec8Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361546075101402"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547705337</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4D75B2587E8E2171461CC6D1DCE5BAC9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='params-2'>params</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>String</td>
+<td>True</td>
+<td>api_method, value is <code>cancel_order</code></td>
+</tr>
+<tr>
+<td>app_key</td>
+<td>String</td>
+<td>True</td>
+<td>app key</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Integer</td>
+<td>True</td>
+<td>timestamp in seconds</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>String</td>
+<td>True</td>
+<td>Partner Order Id</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>String</td>
+<td>True</td>
+<td>the api sign</td>
 </tr>
 </tbody></table>
 

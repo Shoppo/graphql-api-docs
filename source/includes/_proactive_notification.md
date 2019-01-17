@@ -363,3 +363,28 @@ Name | Type | Required | Description
 --- | --- | --- | ---
 merchant_toggle_list | List | True | merchant toggle list
 time_updated | Int | merchant_toggle_list | timestamp
+
+
+## Cancel Partner Order
+
+```json
+{
+	"action": "cancel_order",
+	"app_key": "vXebxpb7BGec8Y",
+	"order_id": "1361546075101402",
+	"timestamp": 1547705337,
+	"sign": "4D75B2587E8E2171461CC6D1DCE5BAC9"
+}
+```
+
+### params
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+action | String | True | api_method, value is `cancel_order`
+app_key | String | True | app key
+timestamp | Integer | True | timestamp in seconds
+order_id | String | True | Partner Order Id
+sign | String | True | the api sign
+
+
