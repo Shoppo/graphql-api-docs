@@ -35,4 +35,4 @@ To use **cURL**, you need a valid GraphQL request body. The format is: `{"query"
 
 An example using Product Feed Query Object is shown below:
 
-`curl -X POST -H "Content-Type: application/json" -H "accesstoken: your_accesstoken" -H "viewerid: your_viewerid" --data '{"query":"query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n","variables":{"id": "leZwJZoYvBfy"},"operationName":"Product"}' https://graphql-dev.shoppo.com/api/graphql/partner`
+`curl -X POST -H "Content-Type: application/json" -H "accesstoken: your_accesstoken" -H "viewerid: your_viewerid" --data '{"query":"query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n","variables":{"id": "21421713751366966949588"},"operationName":"Product"}' https://graphql-dev.shoppo.com/api/graphql/partner`
