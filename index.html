@@ -428,7 +428,7 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 
 <p>An example using Product Feed Query Object is shown below:</p>
 
-<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;id&quot;: &quot;leZwJZoYvBfy&quot;},&quot;operationName&quot;:&quot;Product&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
+<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;id&quot;: &quot;21421713751366966949588&quot;},&quot;operationName&quot;:&quot;Product&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
 <h1 id='product'>Product</h1>
 <p>You can query the product list and product category through API.</p>
 
