@@ -233,3 +233,15 @@ CountryCourierCode | CountryCourierCode | True | country courier code enum
 shippingPrice | Float | True | special shipping price for this country, currency unit is **USD**
 shippingTime | String | True | special shipping time for this country
 
+<span id="country-code"></span>
+
+### Country Code Enum
+
+Value | Country
+--- | ---
+US | United States
+CN | China
+IN | India
+MY | Malaysia
+SG | Singapore
+KE | Kenya
