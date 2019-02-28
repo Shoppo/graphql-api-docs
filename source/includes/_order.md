@@ -138,7 +138,7 @@ Name | Type | Required | Description
 skuId | ID | True | Sku relay id
 quantity | Int | True | buy Sku quantity
 
-The response of order structure details, please see [Order Node](#Order-node)
+The response of order structure details, please see [Order Node](#order-node)
 
 ## Query Order
 

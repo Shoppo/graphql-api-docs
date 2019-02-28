@@ -434,7 +434,7 @@ If you use it in <b>GraphiQL</b>, you need to add <code>test_access_token</code>
 
 <p>An example using Product Feed Query Object is shown below:</p>
 
-<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;id&quot;: &quot;leZwJZoYvBfy&quot;},&quot;operationName&quot;:&quot;Product&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
+<p><code>curl -X POST -H &quot;Content-Type: application/json&quot; -H &quot;accesstoken: your_accesstoken&quot; -H &quot;viewerid: your_viewerid&quot; --data &#39;{&quot;query&quot;:&quot;query product($id: ID!) {\n  node(id: $id) {\n    ... on Product {\n      id\n      name\n    }\n  }\n}\n&quot;,&quot;variables&quot;:{&quot;id&quot;: &quot;21421713751366966949588&quot;},&quot;operationName&quot;:&quot;Product&quot;}&#39; https://graphql-dev.shoppo.com/api/graphql/partner</code></p>
 <h1 id='product'>Product</h1>
 <p>You can query the product list and product category through API.</p>
 
@@ -689,6 +689,14 @@ Since some of our previous categories did not distinguish between men and women,
 </tbody></table>
 <h2 id='product-list'>Product List</h2>
 <p>Query products with pagination(using <strong>Relay Connection</strong>, check <a href="https://graphql.org/learn/pagination/#end-of-list-counts-and-connections">End-of-list, counts, and Connections</a> for details)</p>
+
+<aside class="notice">
+How do we know when we reach the end of the connection? We have to keep querying until we get an empty list back, but we'd really like for the connection to tell us when we've reached the end so we don't need that additional request. Similarly, what if we want to know additional information about the connection itself; for example, how many total products does SHOPPO have?
+
+To solve both of these problems, our products field can return a connection object. The connection object will then have a field for the edges, as well as other information (like total count and information about whether a next page exists). So our final query might look 
+
+Note that we also might include endCursor and startCursor in this PageInfo object. This way, if we don't need any of the additional information that the edge contains, we don't need to query for the edges at all, since we got the cursors needed for pagination from pageInfo. This leads to a potential usability improvement for connections; instead of just exposing the edges list, we could also expose a dedicated list of just the nodes, to avoid a layer of indirection.
+</aside>
 <div class="highlight"><pre class="highlight graphql tab-graphql"><code><span class="k">query</span><span class="w"> </span><span class="n">productList</span><span class="p">(</span><span class="w">
   </span><span class="nv">$first</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">,</span><span class="w">
   </span><span class="nv">$after</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w">
@@ -709,6 +717,10 @@ Since some of our previous categories did not distinguish between men and women,
         </span><span class="n">id</span><span class="w">
         </span><span class="n">name</span><span class="w">
       </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="n">pageInfo</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">hasNextPage</span><span class="w">
+      </span><span class="n">endCursor</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -908,10 +920,10 @@ Since some of our previous categories did not distinguish between men and women,
 </tr>
 </thead><tbody>
 <tr>
-<td>countryCode</td>
-<td><a href="#country-code">CountryCode</a></td>
+<td>CountryCourierCode</td>
+<td>CountryCourierCode</td>
 <td>True</td>
-<td>country code enum</td>
+<td>country courier code enum</td>
 </tr>
 <tr>
 <td>shippingPrice</td>

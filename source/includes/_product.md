@@ -106,6 +106,14 @@ width | String | False | default unit is **inch**
 
 Query products with pagination(using **Relay Connection**, check [End-of-list, counts, and Connections](https://graphql.org/learn/pagination/#end-of-list-counts-and-connections) for details)
 
+<aside class="notice">
+How do we know when we reach the end of the connection? We have to keep querying until we get an empty list back, but we'd really like for the connection to tell us when we've reached the end so we don't need that additional request. Similarly, what if we want to know additional information about the connection itself; for example, how many total products does SHOPPO have?
+
+To solve both of these problems, our products field can return a connection object. The connection object will then have a field for the edges, as well as other information (like total count and information about whether a next page exists). So our final query might look 
+
+Note that we also might include endCursor and startCursor in this PageInfo object. This way, if we don't need any of the additional information that the edge contains, we don't need to query for the edges at all, since we got the cursors needed for pagination from pageInfo. This leads to a potential usability improvement for connections; instead of just exposing the edges list, we could also expose a dedicated list of just the nodes, to avoid a layer of indirection.
+</aside>
+
 ```graphql
 query productList(
   $first: Int,
@@ -127,6 +135,10 @@ query productList(
         id
         name
       }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
     }
   }
 }
@@ -217,7 +229,7 @@ UNKNOWN | not sure
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-countryCode | [CountryCode](#country-code) | True | country code enum
+CountryCourierCode | CountryCourierCode | True | country courier code enum
 shippingPrice | Float | True | special shipping price for this country, currency unit is **USD**
 shippingTime | String | True | special shipping time for this country
 
