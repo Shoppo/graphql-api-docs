@@ -7,6 +7,15 @@ In order to notify you of our product and sku changes in a timely manner, we nee
 For each interface, you need to provide a url to accept the corresponding parameters and return the correct result. For the correct result, you need to return a response code of 200. For other incorrect results, return a non-200 response code.
 
 
+Shoppo wil set `accesstoken` fields in request header. In addition, Content-type to application/json.
+
+# Authentication
+
+- **Content-type**: `application/json`
+- **accesstoken**: `accesstoken`
+
+
+
 ## Create Product
 
 ### post params
@@ -369,11 +378,8 @@ time_updated | Int | merchant_toggle_list | timestamp
 
 ```json
 {
-	"action": "cancel_order",
-	"app_key": "vXebxpb7BGec8Y",
 	"order_id": "1361546075101402",
 	"timestamp": 1547705337,
-	"sign": "A29EAE4F8A00EFE88DA231573D0B9327"
 }
 ```
 
@@ -381,10 +387,23 @@ time_updated | Int | merchant_toggle_list | timestamp
 
 Name | Type | Required | Description
 --- | --- | --- | ---
-action | String | True | api_method, value is `cancel_order`
-app_key | String | True | app key
 timestamp | Integer | True | timestamp in seconds
 order_id | String | True | Partner Order Id
-sign | String | True | the api sign
 
 
+
+## Deliver Partner Order
+
+```json
+{
+	"order_id": "1361546075101402",
+	"timestamp": 1547705337
+}
+```
+
+### params
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+timestamp | Integer | True | timestamp in seconds
+order_id | String | True | Partner Order Id
