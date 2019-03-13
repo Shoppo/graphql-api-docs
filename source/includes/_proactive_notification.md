@@ -388,7 +388,7 @@ time_updated | Int | merchant_toggle_list | timestamp
 Name | Type | Required | Description
 --- | --- | --- | ---
 timestamp | Integer | True | timestamp in seconds
-order_id | String | True | Partner Order Id
+order_id | String | True | Partner Order Code
 
 
 
@@ -406,4 +406,4 @@ order_id | String | True | Partner Order Id
 Name | Type | Required | Description
 --- | --- | --- | ---
 timestamp | Integer | True | timestamp in seconds
-order_id | String | True | Partner Order Id
+order_id | String | True | Partner Order Code
