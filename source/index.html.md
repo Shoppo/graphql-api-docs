@@ -5,7 +5,7 @@ language_tabs:
   - graphql: GraphQL
 
 toc_footers:
-  - © 2018 Dot Matrix Inc.
+  - © 2019 Dot Matrix Inc.
 
 includes:
   - introduction
