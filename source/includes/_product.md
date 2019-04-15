@@ -101,6 +101,7 @@ shippingTime | String | True | Shipping days range, e.g., 3-10 days, product all
 size | String | False | default unit is **inch**
 weight | String | False | default unit is **Pound**
 width | String | False | default unit is **inch**
+specs | List | False | sku spec item list with name and value like Size, Weight or Material
 
 ## Product List
 
